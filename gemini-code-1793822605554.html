@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>River Bank Capital — Banking, Credit Cards, Loans and Wealth Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bofa: {
+              900: '#012169',
+              800: '#0a327d',
+              700: '#144196',
+              600: '#0051a5',
+              red: '#E31837',
+              bg: '#f4f6f9',
+              light: '#e9eff6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #f4f6f9; color: #232323; }
+    .slide-fade { transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+    .modal-backdrop { background: rgba(1, 33, 105, 0.65); backdrop-filter: blur(4px); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #e9eff6; }
+    ::-webkit-scrollbar-thumb { background: #012169; border-radius: 4px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-bofa-red selection:text-white">
+
+  <!-- TOP UTILITY BAR -->
+  <div class="bg-[#f2f4f8] text-gray-700 text-xs py-2 px-4 border-b border-gray-300">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center space-x-3 font-medium">
+        <span class="text-bofa-red font-bold uppercase tracking-wider">River Bank Capital</span>
+        <span>|</span>
+        <span class="text-gray-600 cursor-pointer hover:underline">En español</span>
+      </div>
+      <div class="flex items-center space-x-5 text-xs font-semibold">
+        <a href="#locator" class="hover:text-bofa-600 transition-colors">Locations</a>
+        <a href="#support" class="hover:text-bofa-600 transition-colors">Contact Us</a>
+        <a href="#help" class="hover:text-bofa-600 transition-colors">Help</a>
+        <a href="#security" class="hover:text-bofa-600 transition-colors">Security</a>
+        <a href="#sitemap" class="hover:text-bofa-600 transition-colors">Site Map</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="bg-white border-b-2 border-gray-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-8">
+        <a href="#" id="brand-logo" class="flex items-center space-x-2.5 group">
+          <div class="flex flex-col space-y-0.5">
+            <div class="flex space-x-0.5">
+              <span class="w-3.5 h-2 bg-bofa-red"></span>
+              <span class="w-3.5 h-2 bg-bofa-red"></span>
+              <span class="w-3.5 h-2 bg-bofa-red"></span>
+            </div>
+            <div class="flex space-x-0.5">
+              <span class="w-3.5 h-2 bg-bofa-900"></span>
+              <span class="w-3.5 h-2 bg-bofa-900"></span>
+              <span class="w-3.5 h-2 bg-bofa-900"></span>
+            </div>
+          </div>
+          <span class="text-lg sm:text-xl font-extrabold text-bofa-900 tracking-tight uppercase">
+            RIVER BANK <span class="text-bofa-red">CAPITAL</span>
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex space-x-5 text-xs font-bold text-gray-800 uppercase tracking-wider">
+          <button onclick="triggerInfoModal('CHECKING', 'Explore Advantage SafeBalance, Plus, and Relationship checking.')" class="hover:text-bofa-red transition-colors pb-1 border-b-2 border-transparent hover:border-b-bofa-red">Checking</button>
+          <button onclick="triggerInfoModal('SAVINGS', 'High-yield savings and flexible CDs.')" class="hover:text-bofa-red transition-colors pb-1 border-b-2 border-transparent hover:border-b-bofa-red">Savings & CDs</button>
+          <button onclick="triggerInfoModal('CREDIT CARDS', 'Travel, rewards, cash back, and secured credit cards.')" class="hover:text-bofa-red transition-colors pb-1 border-b-2 border-transparent hover:border-b-bofa-red">Credit Cards</button>
+          <button onclick="triggerInfoModal('HOME LOANS', 'Fixed and adjustable rate mortgages, HELOCs.')" class="hover:text-bofa-red transition-colors pb-1 border-b-2 border-transparent hover:border-b-bofa-red">Home Loans</button>
+          <button onclick="triggerInfoModal('AUTO LOANS', 'New and used vehicle financing.')" class="hover:text-bofa-red transition-colors pb-1 border-b-2 border-transparent hover:border-b-bofa-red">Auto Loans</button>
+          <button onclick="triggerInfoModal('INVESTING', 'Merrill guided wealth management and self-directed brokerage.')" class="hover:text-bofa-red transition-colors pb-1 border-b-2 border-transparent hover:border-b-bofa-red">Investing</button>
+          <button onclick="triggerInfoModal('BETTER MONEY HABITS', 'Financial education and literacy programs.')" class="hover:text-bofa-red transition-colors pb-1 border-b-2 border-transparent hover:border-b-bofa-red">Better Money Habits®</button>
+        </nav>
+      </div>
+
+      <div class="flex items-center space-x-3" id="header-auth-buttons">
+        <button id="btn-show-login" class="bg-bofa-red hover:bg-red-700 text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded shadow transition-all uppercase">
+          Sign In
+        </button>
+        <button id="btn-show-register" class="bg-white hover:bg-gray-50 text-bofa-900 border border-bofa-900 font-bold text-xs sm:text-sm px-4 py-2.5 rounded transition-all uppercase hidden sm:inline-block">
+          Open Account
+        </button>
+      </div>
+
+      <div class="hidden items-center space-x-3" id="header-user-badge">
+        <span class="text-xs font-semibold text-gray-600 hidden lg:inline uppercase">Welcome, <strong id="header-user-name" class="text-bofa-900">Customer</strong></span>
+        <button id="btn-portal-dashboard" class="bg-bofa-900 hover:bg-bofa-800 text-white font-bold text-xs px-3.5 py-2 rounded uppercase">My Portfolio</button>
+        <button id="btn-header-logout" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs px-3 py-2 rounded uppercase">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN BODY CONTAINER -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 py-6 flex-grow w-full space-y-6">
+
+    <!-- HOMEPAGE VIEW: COMPLETE FULL LAYOUT -->
+    <div id="view-homepage" class="space-y-6">
+      
+      <!-- HERO 1: SIGN IN BOX + CREDIT CARD REWARDS SHOWCASE (FROM SCREENSHOT 1) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- QUICK SIGN-IN BOX (Left Column) -->
+        <aside class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex flex-col justify-between">
+          <div>
+            <div class="border-b border-gray-200 pb-3 mb-4">
+              <h2 class="text-base font-extrabold text-bofa-900 uppercase">Sign In to Online Banking</h2>
+              <p class="text-xs text-gray-500">Secure access to your accounts</p>
+            </div>
+            
+            <form id="quick-signin-form" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">User ID</label>
+                <input type="email" id="qs-email" class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:ring-2 focus:ring-bofa-900 focus:outline-none" placeholder="Janshepherd45@gmail.com" required>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label>
+                <input type="password" id="qs-pass" class="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:ring-2 focus:ring-bofa-900 focus:outline-none" placeholder="••••••••" required>
+              </div>
+              <div class="flex items-center space-x-2">
+                <input type="checkbox" id="qs-save" class="w-4 h-4 text-bofa-red rounded">
+                <label for="qs-save" class="text-xs text-gray-600">Save user ID</label>
+              </div>
+              <button type="submit" class="w-full bg-bofa-red hover:bg-red-700 text-white font-bold py-2.5 rounded text-sm shadow uppercase tracking-wide">
+                Log In
+              </button>
+            </form>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between text-xs font-bold text-bofa-600">
+            <a href="#" onclick="openRegisterView(); return false;" class="hover:underline">Forgot user ID/password</a>
+            <a href="#" onclick="openRegisterView(); return false;" class="hover:underline">Enroll</a>
+          </div>
+        </aside>
+
+        <!-- CREDIT CARDS SHOWCASE HERO (2 Columns - From Screenshot 1) -->
+        <section class="lg:col-span-2 rounded-xl overflow-hidden shadow-xl bg-bofa-900 text-white p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold text-bofa-red uppercase tracking-wider">Featured Rewards</span>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold uppercase mt-1">Choose the card that works for you</h2>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6 text-center">
+            <div class="bg-blue-950/60 p-3 rounded-lg border border-blue-500/30">
+              <div class="text-lg sm:text-xl font-black text-white">$200</div>
+              <p class="text-[10px] text-blue-200 mt-1 uppercase">Online bonus offer<br>No annual fee.</p>
+            </div>
+            <div class="bg-blue-950/60 p-3 rounded-lg border border-blue-500/30">
+              <div class="text-lg sm:text-xl font-black text-white">$250</div>
+              <p class="text-[10px] text-blue-200 mt-1 uppercase">Online bonus offer<br>No annual fee.</p>
+            </div>
+            <div class="bg-blue-950/60 p-3 rounded-lg border border-blue-500/30">
+              <div class="text-lg sm:text-xl font-black text-white">25,000</div>
+              <p class="text-[10px] text-blue-200 mt-1 uppercase">Online bonus points<br>No annual fee.</p>
+            </div>
+            <div class="bg-blue-950/60 p-3 rounded-lg border border-blue-500/30">
+              <div class="text-lg sm:text-xl font-black text-white">0%</div>
+              <p class="text-[10px] text-blue-200 mt-1 uppercase">Intro APR offer<br>No annual fee.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div onclick="openRegisterView()" class="bg-white text-gray-900 p-3 rounded-lg cursor-pointer hover:shadow-lg transition">
+              <div class="h-20 rounded bg-cover bg-center mb-2" style="background-image: url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=400&q=80')"></div>
+              <h4 class="text-[11px] font-bold uppercase text-bofa-900">Customized Cash Rewards</h4>
+            </div>
+            <div onclick="openRegisterView()" class="bg-white text-gray-900 p-3 rounded-lg cursor-pointer hover:shadow-lg transition">
+              <div class="h-20 rounded bg-cover bg-center mb-2" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&q=80')"></div>
+              <h4 class="text-[11px] font-bold uppercase text-bofa-900">Unlimited Cash Rewards</h4>
+            </div>
+            <div onclick="openRegisterView()" class="bg-white text-gray-900 p-3 rounded-lg cursor-pointer hover:shadow-lg transition">
+              <div class="h-20 rounded bg-cover bg-center mb-2" style="background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80')"></div>
+              <h4 class="text-[11px] font-bold uppercase text-bofa-900">Travel Rewards</h4>
+            </div>
+            <div onclick="openRegisterView()" class="bg-white text-gray-900 p-3 rounded-lg cursor-pointer hover:shadow-lg transition">
+              <div class="h-20 rounded bg-cover bg-center mb-2" style="background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=400&q=80')"></div>
+              <h4 class="text-[11px] font-bold uppercase text-bofa-900">BankAmericard®</h4>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- HERO 2: CHECKING OFFERS & TEAM SPOTLIGHT (FROM SCREENSHOT 2) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Checking Offer Box -->
+        <section class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">New Checking Customers</span>
+            <h3 class="text-xl font-extrabold text-bofa-900 uppercase mt-1">Cash offer up to $500</h3>
+            <p class="text-xs text-gray-600 mt-2">Start by opening a new eligible checking account and meeting qualifying deposit criteria.</p>
+          </div>
+          <div class="my-6 text-center bg-blue-50 p-6 rounded-lg border border-blue-100">
+            <span class="text-4xl sm:text-5xl font-black text-bofa-900">$500</span>
+            <span class="block text-xs font-bold text-bofa-red uppercase mt-1">Cash Offer Bonus</span>
+          </div>
+          <button onclick="openRegisterView()" class="w-full bg-bofa-900 hover:bg-bofa-800 text-white font-bold py-2.5 rounded text-xs uppercase tracking-wider">
+            See Details & Apply
+          </button>
+        </section>
+
+        <!-- Team Spotlight / Employee Story Box -->
+        <section class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between bg-cover bg-center text-white relative overflow-hidden" style="background-image: linear-gradient(rgba(1, 33, 105, 0.9), rgba(1, 33, 105, 0.85)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80')">
+          <div class="relative z-10">
+            <span class="text-[10px] font-bold text-bofa-red uppercase tracking-widest bg-white px-2 py-0.5 rounded">Employee Spotlight</span>
+            <blockquote class="text-sm font-semibold italic mt-3">"I value the culture of teamwork here."</blockquote>
+            <p class="text-xs text-blue-100 mt-2">In the military, John M. served his country. Now he helps teams serving their communities.</p>
+          </div>
+          <div class="relative z-10 mt-6 flex items-center justify-between pt-4 border-t border-blue-800">
+            <div>
+              <span class="font-bold block text-sm">John M.</span>
+              <span class="text-[10px] text-blue-300 uppercase">Human Resources Manager</span>
+            </div>
+            <button onclick="triggerInfoModal('TEAM SPOTLIGHT', 'Read more stories about River Bank Capital veterans and community leaders.')" class="bg-white text-bofa-900 font-bold text-xs px-4 py-2 rounded uppercase">
+              Read Stories
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- PRODUCT CARDS GRID (FROM SCREENSHOT 2 BOTTOM ROW) -->
+      <section class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div onclick="openRegisterView()" class="p-4 rounded-lg bg-gray-50 hover:bg-blue-50 border border-gray-200 cursor-pointer transition">
+            <div class="text-xs font-bold text-bofa-red uppercase mb-1">Custom Cash</div>
+            <h4 class="text-sm font-black text-bofa-900 uppercase">6% customized cash back offer</h4>
+            <p class="text-[11px] text-gray-600 mt-1">Earn more cash back in the category of your choice with the Customized Cash Rewards credit card.</p>
+            <span class="text-xs font-bold text-bofa-600 mt-3 inline-block">Apply now &rarr;</span>
+          </div>
+          <div onclick="openRegisterView()" class="p-4 rounded-lg bg-gray-50 hover:bg-blue-50 border border-gray-200 cursor-pointer transition">
+            <div class="text-xs font-bold text-bofa-red uppercase mb-1">Checking Promo</div>
+            <h4 class="text-sm font-black text-bofa-900 uppercase">Cash offer up to $500</h4>
+            <p class="text-[11px] text-gray-600 mt-1">Check out this offer for new checking customers meeting qualifying terms.</p>
+            <span class="text-xs font-bold text-bofa-600 mt-3 inline-block">See details &rarr;</span>
+          </div>
+          <div onclick="triggerInfoModal('MOBILE ALERTS', 'Get push alerts for debit card swipes, balance drops, and suspicious login attempts.')" class="p-4 rounded-lg bg-gray-50 hover:bg-blue-50 border border-gray-200 cursor-pointer transition">
+            <div class="text-xs font-bold text-bofa-red uppercase mb-1">Security Alert</div>
+            <h4 class="text-sm font-black text-bofa-900 uppercase">Custom mobile alerts</h4>
+            <p class="text-[11px] text-gray-600 mt-1">With our Mobile Banking app alerts, prioritize what you see based on what matters most to you.</p>
+            <span class="text-xs font-bold text-bofa-600 mt-3 inline-block">Get the app &rarr;</span>
+          </div>
+          <div onclick="triggerInfoModal('MERRILL INVESTING', 'Self-directed online stock, ETF, and options trading with zero commission fees.')" class="p-4 rounded-lg bg-gray-50 hover:bg-blue-50 border border-gray-200 cursor-pointer transition">
+            <div class="text-xs font-bold text-bofa-red uppercase mb-1">Merrill Wealth</div>
+            <h4 class="text-sm font-black text-bofa-900 uppercase">Invest the way you want</h4>
+            <p class="text-[11px] text-gray-600 mt-1">Choose your own investments, set your investing goals online or talk with an advisor.</p>
+            <span class="text-xs font-bold text-bofa-600 mt-3 inline-block">Get started &rarr;</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINANCIAL EDUCATION: BETTER MONEY HABITS (FROM SCREENSHOT 3) -->
+      <section class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm space-y-6">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-xl sm:text-2xl font-black text-bofa-900 uppercase tracking-tight">Your financial goals matter</h2>
+          <p class="text-xs text-gray-600 mt-1">We can help you achieve them through Better Money Habits® financial education and programs that make communities stronger.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div onclick="triggerInfoModal('BANK REWARDS', 'Learn how rewards programs evaluate credit utilization and redemption values.')" class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200 cursor-pointer group">
+            <div class="h-36 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80')"></div>
+            <div class="p-4">
+              <h4 class="text-xs font-bold text-bofa-900 uppercase">6 essential questions to ask before choosing a bank rewards program</h4>
+            </div>
+          </div>
+          <div onclick="triggerInfoModal('CHILD SAVINGS', 'Explore tax-advantaged savings vehicles and custodial accounts for children.')" class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200 cursor-pointer group">
+            <div class="h-36 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=400&q=80')"></div>
+            <div class="p-4">
+              <h4 class="text-xs font-bold text-bofa-900 uppercase">What is a savings account? A new way to save for your child's future</h4>
+            </div>
+          </div>
+          <div onclick="triggerInfoModal('CDS VS SAVINGS', 'Compare liquidity, term lengths, and APY compounding on high-yield CDs.')" class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200 cursor-pointer group">
+            <div class="h-36 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80')"></div>
+            <div class="p-4">
+              <h4 class="text-xs font-bold text-bofa-900 uppercase">Savings accounts and CDs (certificates of deposit): Which should I choose?</h4>
+            </div>
+          </div>
+          <div onclick="triggerInfoModal('MONEY CONFESSIONS', 'Read real client stories on budgeting, debt payoff, and homeownership milestones.')" class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200 cursor-pointer group">
+            <div class="h-36 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&q=80')"></div>
+            <div class="p-4">
+              <h4 class="text-xs font-bold text-bofa-900 uppercase">Money Confessions - real people share their experiences and get helpful guidance</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center pt-2">
+          <button onclick="triggerInfoModal('BETTER MONEY HABITS', 'Explore over 400 free interactive financial guides.')" class="bg-bofa-900 hover:bg-bofa-800 text-white font-bold text-xs uppercase px-8 py-3 rounded shadow">
+            Visit Better Money Habits®
+          </button>
+        </div>
+      </section>
+
+      <!-- SECURITY LEVEL & MOBILE APP (FROM SCREENSHOT 4 & 5) -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Security Meter Box -->
+        <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold text-bofa-red uppercase tracking-widest">Account Security Center</span>
+            <h3 class="text-xl font-extrabold text-bofa-900 uppercase mt-1">Level up your account security</h3>
+            <p class="text-xs text-gray-600 mt-2">Watch your security meter rise as you take action to help protect against fraud. See it in the Security Center in Mobile and Online Banking.</p>
+          </div>
+          <div class="my-6 text-center">
+            <div class="inline-block bg-emerald-50 text-emerald-800 px-4 py-2 rounded-full text-xs font-bold uppercase border border-emerald-200">
+              🔒 Advanced security (3 features to high)
+            </div>
+          </div>
+          <button onclick="triggerInfoModal('SECURITY LEVEL', 'Your security score is rated Advanced. Multi-factor SafePass is enabled.')" class="bg-bofa-red hover:bg-red-700 text-white font-bold text-xs uppercase py-3 rounded shadow">
+            Check your level
+          </button>
+        </div>
+
+        <!-- Mobile App Feature Box -->
+        <div class="bg-bofa-900 text-white rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold text-blue-300 uppercase tracking-widest">Mobile Banking</span>
+            <h3 class="text-xl font-extrabold uppercase mt-1">Convenient banking with our Mobile app</h3>
+            <p class="text-xs text-blue-100 mt-2">Manage deposits, track monthly spending meters, freeze debit cards instantly, and transfer funds securely on iOS and Android.</p>
+          </div>
+          <div class="my-6">
+            <div class="bg-blue-950/80 p-4 rounded-lg border border-blue-500/30 flex items-center justify-between text-xs">
+              <div>
+                <span class="text-blue-300 block text-[10px] uppercase font-bold">App Rating</span>
+                <strong class="text-sm font-bold">4.9 ★★★★★ (2.4M Reviews)</strong>
+              </div>
+              <span class="bg-bofa-red text-white text-[10px] font-bold px-3 py-1 rounded uppercase">iOS & Android</span>
+            </div>
+          </div>
+          <button onclick="openRegisterView()" class="bg-white text-bofa-900 font-bold text-xs uppercase py-3 rounded shadow hover:bg-gray-100">
+            Explore our app
+          </button>
+        </div>
+      </section>
+
+      <!-- CONNECT WITH US WIDGETS (FROM SCREENSHOT 6) -->
+      <section class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm space-y-4">
+        <h3 class="text-lg font-extrabold text-bofa-900 uppercase text-center">Connect with us</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div onclick="triggerInfoModal('SCHEDULE APPOINTMENT', 'Book an in-person meeting with a River Bank Capital financial specialist.')" class="p-4 bg-gray-50 hover:bg-blue-50 border border-gray-200 rounded-lg text-center cursor-pointer transition">
+            <div class="text-bofa-red mb-2 text-xl font-bold">📅</div>
+            <h4 class="text-xs font-bold text-bofa-900 uppercase">Schedule an appointment</h4>
+          </div>
+          <div onclick="triggerInfoModal('FIND LOCATION', 'Over 4,300 branch and ATM locations nationwide.')" class="p-4 bg-gray-50 hover:bg-blue-50 border border-gray-200 rounded-lg text-center cursor-pointer transition">
+            <div class="text-bofa-red mb-2 text-xl font-bold">📍</div>
+            <h4 class="text-xs font-bold text-bofa-900 uppercase">Find a location</h4>
+          </div>
+          <div onclick="triggerInfoModal('CONTACT US', 'Call client services 24/7 at 1-800-RIVER-BANK.')" class="p-4 bg-gray-50 hover:bg-blue-50 border border-gray-200 rounded-lg text-center cursor-pointer transition">
+            <div class="text-bofa-red mb-2 text-xl font-bold">📞</div>
+            <h4 class="text-xs font-bold text-bofa-900 uppercase">Contact us</h4>
+          </div>
+          <div onclick="triggerInfoModal('HELP CENTER', 'Browse searchable FAQs and troubleshooting guides.')" class="p-4 bg-gray-50 hover:bg-blue-50 border border-gray-200 rounded-lg text-center cursor-pointer transition">
+            <div class="text-bofa-red mb-2 text-xl font-bold">❓</div>
+            <h4 class="text-xs font-bold text-bofa-900 uppercase">Help center</h4>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- AUTHENTICATION VIEW -->
+    <div id="view-auth" class="max-w-xl mx-auto my-4" hidden>
+      <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+        <div class="flex border-b border-gray-200 bg-gray-50">
+          <button id="tab-auth-login" class="flex-1 py-4 text-center font-bold text-xs sm:text-sm text-bofa-900 border-b-4 border-bofa-red focus:outline-none uppercase">Sign In</button>
+          <button id="tab-auth-register" class="flex-1 py-4 text-center font-bold text-xs sm:text-sm text-gray-500 hover:text-bofa-900 border-b-4 border-transparent focus:outline-none uppercase">Enroll Now</button>
+        </div>
+        <div class="p-6 sm:p-8">
+          <form id="form-login" class="space-y-4">
+            <h2 class="text-lg font-extrabold text-bofa-900 uppercase">Sign In to Online Banking</h2>
+            <div id="login-error-alert" class="bg-red-50 border border-red-200 text-red-700 text-xs p-3 rounded" hidden></div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">User ID or Email</label>
+              <input type="email" id="login-email" class="w-full px-3.5 py-2.5 rounded border border-gray-300 text-sm" placeholder="Janshepherd45@gmail.com" required>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password</label>
+              <input type="password" id="login-password" class="w-full px-3.5 py-2.5 rounded border border-gray-300 text-sm" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="w-full bg-bofa-red hover:bg-red-700 text-white font-bold py-3 rounded text-sm shadow uppercase">Log In</button>
+          </form>
+
+          <form id="form-register" class="space-y-4" hidden>
+            <h2 class="text-lg font-extrabold text-bofa-900 uppercase">Open Account & Enroll</h2>
+            <div id="register-error-alert" class="bg-red-50 border border-red-200 text-red-700 text-xs p-3 rounded" hidden></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Legal Name *</label>
+                <input type="text" id="reg-name" class="w-full px-3 py-2 rounded border border-gray-300 text-xs" placeholder="Jan Shepherd" required>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address *</label>
+                <input type="email" id="reg-email" class="w-full px-3 py-2 rounded border border-gray-300 text-xs" placeholder="jan@example.com" required>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Phone Number *</label>
+                <input type="tel" id="reg-phone" class="w-full px-3 py-2 rounded border border-gray-300 text-xs" placeholder="(555) 019-2834" required>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Date of Birth *</label>
+                <input type="date" id="reg-dob" class="w-full px-3 py-2 rounded border border-gray-300 text-xs" required>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Residential Address *</label>
+              <input type="text" id="reg-address" class="w-full px-3 py-2 rounded border border-gray-300 text-xs" placeholder="742 Evergreen Terrace, Springfield, IL" required>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password *</label>
+                <input type="password" id="reg-password" class="w-full px-3 py-2 rounded border border-gray-300 text-xs" placeholder="••••••••" required>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Confirm Password *</label>
+                <input type="password" id="reg-confirm-password" class="w-full px-3 py-2 rounded border border-gray-300 text-xs" placeholder="••••••••" required>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Social Security Number (SSN / Tax ID) *</label>
+              <input type="password" id="reg-ssn" class="w-full px-3 py-2 rounded border border-gray-300 text-xs" placeholder="XXX-XX-XXXX" maxlength="11" required>
+            </div>
+            <button type="submit" class="w-full bg-bofa-red hover:bg-red-700 text-white font-bold py-3 rounded text-sm shadow uppercase">Continue & Open Account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div id="view-dashboard" class="space-y-6" hidden>
+      <section class="bg-bofa-900 rounded-xl p-6 text-white shadow-lg relative overflow-hidden">
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="bg-bofa-red text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded">Premier Portfolio</span>
+              <span class="text-xs text-blue-200" id="dash-opened-date">Opened: Oct 24, 2026</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-black uppercase" id="dash-welcome-name">Welcome, Jan Shepherd</h1>
+            <p class="text-xs text-blue-100 mt-1">Your online session is encrypted and secure.</p>
+          </div>
+          <span class="bg-blue-900/80 border border-blue-400/30 text-blue-200 text-xs px-3 py-1.5 rounded font-bold uppercase">
+            Status: <strong class="text-white" id="dash-status">Verified / Active</strong>
+          </span>
+        </div>
+        <div class="mt-6 pt-4 border-t border-blue-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+          <div><span class="text-blue-300 block text-[11px] uppercase font-bold">Client ID</span><strong class="font-mono text-sm" id="dash-customer-id">RB-9847201</strong></div>
+          <div><span class="text-blue-300 block text-[11px] uppercase font-bold">Account Number</span><strong class="font-mono text-sm" id="dash-account-num">8834-4920-1109</strong></div>
+          <div><span class="text-blue-300 block text-[11px] uppercase font-bold">Account Type</span><strong class="text-xs uppercase" id="dash-account-type">Premier Personal Checking</strong></div>
+          <div><span class="text-blue-300 block text-[11px] uppercase font-bold">Routing Number</span><strong class="font-mono text-sm">021000089</strong></div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="sm:col-span-2 bg-white rounded-xl p-5 shadow-sm border border-gray-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start">
+              <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">Total Account Balance</span>
+              <span id="dash-balance-badge" class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase" hidden>🔒 Hold Applied</span>
+            </div>
+            <div class="text-3xl sm:text-4xl font-extrabold mt-2 text-bofa-900" id="dash-total-balance">$0.00</div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between text-xs text-gray-600">
+            <span class="uppercase font-bold">Available Balance:</span>
+            <strong class="text-bofa-900 font-mono" id="dash-available-balance">$0.00</strong>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-200 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-[11px] font-bold text-gray-500 uppercase">Debit Card</span>
+              <span id="dash-card-badge" class="bg-gray-100 text-gray-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Not Requested</span>
+            </div>
+            <div class="font-mono font-bold text-base text-bofa-900 mt-1" id="dash-card-num">None Issued</div>
+            <p class="text-[11px] text-gray-500 mt-1" id="dash-card-desc">Status: No card assigned. Request one below.</p>
+          </div>
+          <button id="btn-request-card" onclick="requestCardAction()" class="mt-2 text-[11px] font-bold text-bofa-600 hover:underline uppercase text-left">Request Card in Portal &rarr;</button>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-200 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-bold text-gray-500 uppercase">Activity Summary</span>
+            <div class="mt-2 space-y-1 text-xs">
+              <div class="flex justify-between"><span class="text-gray-500 uppercase">Deposits:</span><strong class="text-bofa-900 font-mono" id="dash-total-deposits">$0.00</strong></div>
+              <div class="flex justify-between"><span class="text-gray-500 uppercase">Withdrawals:</span><strong class="text-bofa-900 font-mono" id="dash-total-withdrawals">$0.00</strong></div>
+            </div>
+          </div>
+          <p class="text-[10px] text-gray-400 mt-2 uppercase font-bold">Verified Ledger.</p>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
+        <h3 class="text-xs font-extrabold text-bofa-900 uppercase tracking-widest mb-3">Quick Actions</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+          <button id="qa-deposit" class="bg-gray-50 hover:bg-gray-100 text-bofa-900 border border-gray-200 p-3 rounded text-center font-bold text-xs uppercase flex flex-col items-center justify-center gap-1.5"><svg class="w-5 h-5 text-bofa-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>Deposit</button>
+          <button id="qa-transfer" class="bg-gray-50 hover:bg-gray-100 text-bofa-900 border border-gray-200 p-3 rounded text-center font-bold text-xs uppercase flex flex-col items-center justify-center gap-1.5"><svg class="w-5 h-5 text-bofa-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>Transfer</button>
+          <button id="qa-withdraw" class="bg-gray-50 hover:bg-gray-100 text-bofa-900 border border-gray-200 p-3 rounded text-center font-bold text-xs uppercase flex flex-col items-center justify-center gap-1.5"><svg class="w-5 h-5 text-bofa-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>Withdraw</button>
+          <button id="qa-pay-bills" class="bg-gray-50 hover:bg-gray-100 text-bofa-900 border border-gray-200 p-3 rounded text-center font-bold text-xs uppercase flex flex-col items-center justify-center gap-1.5"><svg class="w-5 h-5 text-bofa-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Pay Bills</button>
+          <button id="qa-send-money" class="bg-gray-50 hover:bg-gray-100 text-bofa-900 border border-gray-200 p-3 rounded text-center font-bold text-xs uppercase flex flex-col items-center justify-center gap-1.5"><svg class="w-5 h-5 text-bofa-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>Zelle®</button>
+          <button id="qa-beneficiaries" class="bg-gray-50 hover:bg-gray-100 text-bofa-900 border border-gray-200 p-3 rounded text-center font-bold text-xs uppercase flex flex-col items-center justify-center gap-1.5"><svg class="w-5 h-5 text-bofa-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>Contacts</button>
+          <button id="qa-statements" class="bg-gray-50 hover:bg-gray-100 text-bofa-900 border border-gray-200 p-3 rounded text-center font-bold text-xs uppercase flex flex-col items-center justify-center gap-1.5 col-span-2 sm:col-span-1"><svg class="w-5 h-5 text-bofa-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Statements</button>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div>
+            <h3 class="text-base font-extrabold text-bofa-900 uppercase">Recent Activity & Statements</h3>
+            <p class="text-xs text-gray-500">Real-time ledger updates.</p>
+          </div>
+          <input type="text" id="dash-tx-search" placeholder="Search activity..." class="px-3 py-1.5 border border-gray-300 rounded text-xs w-full sm:w-56 focus:outline-none focus:ring-1 focus:ring-bofa-900">
+        </div>
+        <div id="dash-empty-state" class="p-12 text-center" hidden>
+          <h4 class="text-base font-bold text-gray-700 uppercase">No Transactions Yet</h4>
+        </div>
+        <div id="dash-table-wrapper" class="overflow-x-auto max-h-[500px]">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-gray-50 text-gray-700 font-bold border-b border-gray-200 sticky top-0 uppercase">
+              <tr>
+                <th class="p-3.5">Date</th>
+                <th class="p-3.5">Reference #</th>
+                <th class="p-3.5">Description</th>
+                <th class="p-3.5">Type</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5 text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="dash-tx-tbody" class="divide-y divide-gray-100"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0b2341] text-gray-300 text-xs border-t-4 border-bofa-red py-12 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 mb-8 border-b border-blue-900 pb-8">
+      <div>
+        <h4 class="font-bold text-white uppercase mb-3 text-sm">About Us</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-white transition">Career Opportunities</a></li>
+          <li><a href="#" class="hover:text-white transition">ESG & Sustainability</a></li>
+          <li><a href="#" class="hover:text-white transition">Newsroom</a></li>
+          <li><a href="#" class="hover:text-white transition">Investor Relations</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white uppercase mb-3 text-sm">Help & Support</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-white transition">Client Support Center</a></li>
+          <li><a href="#" class="hover:text-white transition">Security Center</a></li>
+          <li><a href="#" class="hover:text-white transition">Report Fraud & Phishing</a></li>
+          <li><a href="#" class="hover:text-white transition">Accessibility Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white uppercase mb-3 text-sm">Products</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-white transition">Checking & Savings</a></li>
+          <li><a href="#" class="hover:text-white transition">Credit Cards & Rewards</a></li>
+          <li><a href="#" class="hover:text-white transition">Home Loans & Mortgages</a></li>
+          <li><a href="#" class="hover:text-white transition">Auto Financing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white uppercase mb-3 text-sm">Wealth & Investing</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-white transition">Merrill Guided Investing</a></li>
+          <li><a href="#" class="hover:text-white transition">Private Bank Services</a></li>
+          <li><a href="#" class="hover:text-white transition">Retirement Planning</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white uppercase mb-3 text-sm">Connect</h4>
+        <p class="text-gray-400 text-[11px] mb-3 leading-relaxed">Member FDIC. Equal Housing Lender. Fully encrypted secure banking communications.</p>
+        <span class="inline-block bg-bofa-red text-white text-[10px] font-bold px-3 py-1 rounded uppercase tracking-widest">256-Bit SSL Secured</span>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto text-center text-gray-500 text-[11px] space-y-2">
+      <p>River Bank Capital, N.A. Member FDIC. Equal Housing Lender © 2026 River Bank Capital Corporation. All rights reserved.</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="hover:underline">Privacy Policy</a>
+        <span>|</span>
+        <a href="#" class="hover:underline">Security Practices</a>
+        <span>|</span>
+        <a href="#" class="hover:underline">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="modal-info" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" hidden>
+    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl space-y-4 border-t-4 border-bofa-red">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h3 id="modal-info-title" class="text-lg font-bold text-bofa-900">Information</h3>
+        <button onclick="closeModal('modal-info')" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+      </div>
+      <p id="modal-info-body" class="text-xs text-gray-600 leading-relaxed"></p>
+      <button onclick="closeModal('modal-info')" class="w-full bg-bofa-900 text-white font-bold py-2.5 rounded text-xs">Close</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT ENGINE -->
+  <script>
+    "use strict";
+
+    function generateJanShepherdTransactions() {
+      const txs = [];
+      let refCounter = 98210;
+      for (let year = 2025; year >= 2016; year--) {
+        txs.push({ date: `Apr 28, ${year}`, ref: `TX-${refCounter++}`, description: `Portfolio Liquidation Proceed (${year})`, type: "Incoming", amount: 450000.00 + (year * 125.50), status: "Verified" });
+        txs.push({ date: `Apr 14, ${year}`, ref: `TX-${refCounter++}`, description: `Real Estate Escrow Settlement (${year})`, type: "Outgoing", amount: 120000.00 + (year * 45.20), status: "Completed" });
+      }
+      return txs;
+    }
+
+    const PRESEEDED_JAN_SHEPHERD = {
+      id: "RB-7732901",
+      name: "Jan Shepherd",
+      email: "Janshepherd45@gmail.com",
+      phone: "(555) 019-7732",
+      dob: "1982-04-12",
+      address: "742 River Bank Capital Plaza, New York, NY",
+      password: "Shepherd77@",
+      accountNum: "8834-4920-7732",
+      accountType: "Premier Personal Checking",
+      openedDate: "Apr 1, 2016",
+      status: "Verified / Hold Applied",
+      balance: 3567850.25,
+      balanceOnHold: true,
+      cardNumEnding: "7732",
+      cardStatus: "FROZEN",
+      totalDeposits: 4528150.25,
+      totalWithdrawals: 960300.00,
+      transactions: generateJanShepherdTransactions()
+    };
+
+    function getStoredUsers() {
+      const data = localStorage.getItem("rbc_registered_users");
+      let users = data ? JSON.parse(data) : [];
+      if (!users.some(u => u.email.toLowerCase() === PRESEEDED_JAN_SHEPHERD.email.toLowerCase())) {
+        users.push(PRESEEDED_JAN_SHEPHERD);
+        localStorage.setItem("rbc_registered_users", JSON.stringify(users));
+      }
+      return users;
+    }
+
+    function saveStoredUsers(users) {
+      localStorage.setItem("rbc_registered_users", JSON.stringify(users));
+    }
+
+    function getActiveSession() {
+      const email = localStorage.getItem("rbc_active_session_email");
+      if (!email) return null;
+      return getStoredUsers().find(u => u.email.toLowerCase() === email.toLowerCase()) || null;
+    }
+
+    function setActiveSession(email) {
+      if (email) localStorage.setItem("rbc_active_session_email", email);
+      else localStorage.removeItem("rbc_active_session_email");
+    }
+
+    function createFreshUserAccount(formData) {
+      const users = getStoredUsers();
+      const randomAcc = Math.floor(1000 + Math.random() * 9000) + "-" + Math.floor(1000 + Math.random() * 9000) + "-" + Math.floor(1000 + Math.random() * 9000);
+      const newUser = {
+        id: `RB-${Math.floor(1000000 + Math.random() * 9000000)}`,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        dob: formData.dob,
+        address: formData.address,
+        password: formData.password,
+        accountNum: randomAcc,
+        accountType: "Premier Personal Checking",
+        openedDate: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+        status: "Verified / Active",
+        balance: 0.00,
+        balanceOnHold: false,
+        cardNumEnding: null,
+        cardStatus: "NOT REQUESTED",
+        totalDeposits: 0.00,
+        totalWithdrawals: 0.00,
+        transactions: []
+      };
+      users.push(newUser);
+      saveStoredUsers(users);
+      return newUser;
+    }
+
+    function renderDashboardView() {
+      const session = getActiveSession();
+      if (!session) { showHomepageView(); return; }
+
+      document.getElementById("dash-welcome-name").textContent = `Welcome, ${session.name}`;
+      document.getElementById("dash-opened-date").textContent = `Opened: ${session.openedDate}`;
+      document.getElementById("dash-customer-id").textContent = session.id;
+      document.getElementById("dash-account-num").textContent = session.accountNum;
+      document.getElementById("dash-account-type").textContent = session.accountType;
+      document.getElementById("dash-status").textContent = session.status;
+
+      const cardBadge = document.getElementById("dash-card-badge");
+      const cardNumEl = document.getElementById("dash-card-num");
+      const cardDescEl = document.getElementById("dash-card-desc");
+      const requestCardBtn = document.getElementById("btn-request-card");
+
+      if (session.cardStatus === "NOT REQUESTED") {
+        cardBadge.textContent = "NOT REQUESTED";
+        cardBadge.className = "bg-gray-100 text-gray-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase";
+        cardNumEl.textContent = "None Issued";
+        cardDescEl.textContent = "Status: No card assigned. Request one below.";
+        requestCardBtn.hidden = false;
+      } else {
+        cardBadge.textContent = session.cardStatus;
+        cardBadge.className = session.cardStatus === "ACTIVE" ? "bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase" : "bg-cyan-100 text-cyan-800 text-[10px] font-bold px-2 py-0.5 rounded uppercase";
+        cardNumEl.textContent = `•••• ${session.cardNumEnding}`;
+        cardDescEl.textContent = `Status: Card ${session.cardStatus.toLowerCase()}.`;
+        requestCardBtn.hidden = true;
+      }
+
+      document.getElementById("dash-balance-badge").hidden = !session.balanceOnHold;
+      const fmtBalance = `$${session.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById("dash-total-balance").textContent = fmtBalance;
+      document.getElementById("dash-available-balance").textContent = session.balanceOnHold ? "$0.00 (Hold Applied)" : fmtBalance;
+      document.getElementById("dash-total-deposits").textContent = `$${session.totalDeposits.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById("dash-total-withdrawals").textContent = `$${session.totalWithdrawals.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      renderDashboardTransactions(session.transactions);
+    }
+
+    window.requestCardAction = function() {
+      const users = getStoredUsers();
+      const session = getActiveSession();
+      if (!session) return;
+      const user = users.find(u => u.email.toLowerCase() === session.email.toLowerCase());
+      if (!user) return;
+
+      user.cardNumEnding = Math.floor(1000 + Math.random() * 9000);
+      user.cardStatus = "ACTIVE";
+      saveStoredUsers(users);
+      renderDashboardView();
+      triggerInfoModal("Card Requested Successfully", `Your new River Bank Capital debit card ending in ${user.cardNumEnding} has been ordered and is now active.`);
+    };
+
+    function renderDashboardTransactions(transactions) {
+      const tbody = document.getElementById("dash-tx-tbody");
+      const emptyState = document.getElementById("dash-empty-state");
+      const tableWrapper = document.getElementById("dash-table-wrapper");
+
+      if (!transactions || transactions.length === 0) {
+        emptyState.hidden = false;
+        tableWrapper.hidden = true;
+        return;
+      }
+      emptyState.hidden = true;
+      tableWrapper.hidden = false;
+
+      tbody.innerHTML = transactions.map(tx => `
+        <tr class="hover:bg-gray-50">
+          <td class="p-3.5 text-gray-500">${tx.date}</td>
+          <td class="p-3.5 font-mono text-gray-500">${tx.ref}</td>
+          <td class="p-3.5 font-bold text-gray-900">${tx.description}</td>
+          <td class="p-3.5"><span class="${tx.type === 'Incoming' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'} px-2 py-0.5 rounded text-[10px] font-bold">${tx.type}</span></td>
+          <td class="p-3.5 text-gray-500">${tx.status || 'Completed'}</td>
+          <td class="p-3.5 text-right font-bold ${tx.type === 'Incoming' ? 'text-emerald-700' : 'text-gray-900'}">${tx.type === 'Incoming' ? '+' : '-'}$${tx.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+        </tr>
+      `).join('');
+    }
+
+    function showHomepageView() {
+      document.getElementById("view-homepage").hidden = false;
+      document.getElementById("view-auth").hidden = true;
+      document.getElementById("view-dashboard").hidden = true;
+      updateHeaderState();
+    }
+
+    function openRegisterView() {
+      document.getElementById("view-homepage").hidden = true;
+      document.getElementById("view-auth").hidden = false;
+      document.getElementById("view-dashboard").hidden = true;
+      document.getElementById("tab-auth-register").click();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openLoginView() {
+      document.getElementById("view-homepage").hidden = true;
+      document.getElementById("view-auth").hidden = false;
+      document.getElementById("view-dashboard").hidden = true;
+      document.getElementById("tab-auth-login").click();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showDashboardView() {
+      if (!getActiveSession()) { openLoginView(); return; }
+      document.getElementById("view-homepage").hidden = true;
+      document.getElementById("view-auth").hidden = true;
+      document.getElementById("view-dashboard").hidden = false;
+      renderDashboardView();
+      updateHeaderState();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateHeaderState() {
+      const session = getActiveSession();
+      document.getElementById("header-auth-buttons").hidden = !!session;
+      const userBadge = document.getElementById("header-user-badge");
+      userBadge.hidden = !session;
+      if (session) {
+        userBadge.className = "flex items-center space-x-3";
+        document.getElementById("header-user-name").textContent = session.name;
+      }
+    }
+
+    document.getElementById("brand-logo").onclick = (e) => { e.preventDefault(); showHomepageView(); };
+    document.getElementById("btn-show-login").onclick = openLoginView;
+    document.getElementById("btn-show-register").onclick = openRegisterView;
+    document.getElementById("btn-portal-dashboard").onclick = showDashboardView;
+    document.getElementById("btn-header-logout").onclick = () => { setActiveSession(null); showHomepageView(); };
+
+    document.getElementById("quick-signin-form").onsubmit = (e) => {
+      e.preventDefault();
+      const email = document.getElementById("qs-email").value.trim();
+      const pass = document.getElementById("qs-pass").value;
+      const found = getStoredUsers().find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === pass);
+      if (found) {
+        setActiveSession(found.email);
+        showDashboardView();
+      } else {
+        triggerInfoModal("Authentication Failed", "Invalid User ID or password entered in Quick Sign-In.");
+      }
+    };
+
+    window.triggerInfoModal = (title, body) => {
+      document.getElementById("modal-info-title").textContent = title;
+      document.getElementById("modal-info-body").textContent = body;
+      document.getElementById("modal-info").hidden = false;
+    };
+    window.closeModal = (id) => { document.getElementById(id).hidden = true; };
+
+    document.getElementById("form-login").onsubmit = (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      const pass = document.getElementById("login-password").value;
+      const found = getStoredUsers().find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === pass);
+      if (found) {
+        setActiveSession(found.email);
+        showDashboardView();
+      } else {
+        const err = document.getElementById("login-error-alert");
+        err.textContent = "Invalid User ID or password.";
+        err.hidden = false;
+      }
+    };
+
+    document.getElementById("form-register").onsubmit = (e) => {
+      e.preventDefault();
+      const pass = document.getElementById("reg-password").value;
+      const confirmPass = document.getElementById("reg-confirm-password").value;
+      const email = document.getElementById("reg-email").value.trim();
+      if (pass !== confirmPass) {
+        const err = document.getElementById("register-error-alert");
+        err.textContent = "Passwords do not match.";
+        err.hidden = false;
+        return;
+      }
+      const newUser = createFreshUserAccount({
+        name: document.getElementById("reg-name").value.trim(),
+        email: email,
+        phone: document.getElementById("reg-phone").value.trim(),
+        dob: document.getElementById("reg-dob").value,
+        address: document.getElementById("reg-address").value.trim(),
+        password: pass
+      });
+      setActiveSession(newUser.email);
+      showDashboardView();
+    };
+
+    document.getElementById("tab-auth-login").onclick = () => {
+      document.getElementById("form-login").hidden = false;
+      document.getElementById("form-register").hidden = true;
+    };
+    document.getElementById("tab-auth-register").onclick = () => {
+      document.getElementById("form-login").hidden = true;
+      document.getElementById("form-register").hidden = false;
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      getStoredUsers();
+      if (getActiveSession()) showDashboardView();
+      else showHomepageView();
+    });
+  </script>
+</body>
+</html>
