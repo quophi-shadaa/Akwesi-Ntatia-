@@ -1,0 +1,1477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>River Bank Capital — Secure Online Banking & Wealth Management</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f4f4;
+      color: #222222;
+      font-family: "Arial", "Helvetica", sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    main { max-width: 1280px; margin: auto; padding: 20px; }
+    
+    /* Top Utility Bar */
+    .utility-bar {
+      background: #0b2341;
+      color: #ffffff;
+      font-size: 11px;
+      padding: 6px 0;
+      border-bottom: 1px solid #163863;
+    }
+    .utility-content {
+      max-width: 1280px;
+      margin: auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 25px;
+      padding: 0 20px;
+    }
+    .utility-content a { color: #ffffff; text-decoration: none; }
+    .utility-content a:hover { text-decoration: underline; }
+
+    /* Main Header & Logo Design */
+    header {
+      background: #ffffff;
+      border-bottom: 3px solid #e31837;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .header-main-content {
+      max-width: 1280px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+    }
+    .brand {
+      font-size: 24px;
+      font-weight: 900;
+      color: #0b2341;
+      letter-spacing: -0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .bank-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #0b2341 0%, #163863 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 3px 6px rgba(11,35,65,0.25);
+    }
+    .bank-logo-icon::before {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #ffffff;
+      border-top: 2px solid #e31837;
+      border-right: 2px solid #e31837;
+      transform: rotate(45deg);
+    }
+    .bank-logo-icon::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #e31837;
+      border-radius: 50%;
+    }
+    .brand span { color: #e31837; margin-left: 2px; }
+
+    .header-nav-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .header-nav-links button {
+      background: none;
+      border: none;
+      color: #0b2341;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 4px;
+    }
+    .header-nav-links button:hover { color: #e31837; background: #f8f9fa; }
+
+    /* App Layout & Sidebar */
+    .app-container { display: grid; grid-template-columns: 240px 1fr; gap: 20px; margin-top: 20px; }
+    .sidebar { background: white; border: 1px solid #dcdcdc; border-radius: 6px; padding: 15px; height: fit-content; }
+    .sidebar-menu { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-menu button {
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #0b2341;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-menu button:hover, .sidebar-menu button.active { background: #eef2f7; color: #e31837; }
+
+    /* Hero Landing & Secure Sign In Box */
+    .hero-banner {
+      background: linear-gradient(135deg, #0b2341 0%, #163863 100%);
+      color: white;
+      border-radius: 6px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(11,35,65,0.2);
+    }
+    .login-box-panel {
+      background: #ffffff;
+      color: #222222;
+      padding: 25px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 4px solid #e31837;
+    }
+    .login-box-panel label { font-size: 12px; font-weight: 700; color: #0b2341; }
+    .login-box-panel input { padding: 10px; margin-top: 4px; margin-bottom: 12px; border: 1px solid #b0b0b0; border-radius: 4px; font-size: 13px; width: 100%; }
+    
+    .login-submit-btn {
+      background: #e31837;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 14px;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-submit-btn:hover { background: #b81028; }
+
+    .register-action-btn {
+      background: #0b2341;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 13px;
+      width: 100%;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .register-action-btn:hover { background: #163863; }
+
+    .hero-right-content {
+      padding: 35px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-right-content h2 { font-size: clamp(22px, 3vw, 32px); margin: 0 0 15px 0; font-weight: 800; }
+    
+    /* Looping Offers Carousel */
+    .card-offers-carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      border-radius: 6px;
+      margin-top: 15px;
+    }
+    .card-offers-track {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+      width: 100%;
+    }
+    .card-offers-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+    .card-preview-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .card-preview-item .bonus-val { font-size: 20px; font-weight: 900; color: #73b9ff; }
+    .card-preview-item .bonus-txt { font-size: 11px; color: #d0d0d0; margin: 4px 0 10px 0; }
+    .mini-card-img {
+      height: 65px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Financial Goals Looping Carousel */
+    .carousel-section {
+      background: white;
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    }
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      border-radius: 6px;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+      width: 100%;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+    .goal-card {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .goal-card-img { height: 130px; background-size: cover; background-position: center; }
+    .goal-card-body { padding: 15px; font-size: 13px; color: #495057; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+    .goal-card-body a { color: #0053c2; text-decoration: none; font-weight: 700; margin-top: 10px; display: inline-block; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ced4da;
+      border: none;
+      cursor: pointer;
+    }
+    .dot.active { background: #0b2341; }
+
+    /* Info Grids & Cards */
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+    .info-card {
+      background: white; border: 1px solid #dcdcdc; border-radius: 6px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    }
+    .info-card h3 { margin: 0 0 8px 0; color: #0b2341; font-size: 18px; }
+    .info-card p { font-size: 13px; color: #6c757d; line-height: 1.5; margin-bottom: 15px; }
+
+    .card { background: white; border: 1px solid #dcdcdc; border-radius: 6px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); margin-bottom: 20px; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+    .dashboard-card-balance { background: #0b2341; color: white; }
+    .dashboard-card-balance small { color: #b0c4de; }
+    .dashboard-card-preview {
+      background: linear-gradient(135deg, #0056b3 0%, #0b2341 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-number { font-family: monospace; font-size: 16px; letter-spacing: 2px; margin: 10px 0; }
+    .amount { font-size: clamp(22px, 3vw, 28px); font-weight: 800; margin: 10px 0; }
+    
+    /* Tables & Forms */
+    .controls-row { display: flex; gap: 12px; margin: 15px 0; flex-wrap: wrap; }
+    .controls-row input, .controls-row select { margin: 0; flex: 1; min-width: 200px; padding: 10px; border: 1px solid #b0b0b0; border-radius: 4px; }
+    .table-scroll { overflow-x: auto; max-height: 450px; border: 1px solid #dcdcdc; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; background: white; min-width: 500px; }
+    th, td { padding: 12px 15px; border-bottom: 1px solid #e0e0e0; text-align: left; }
+    th { position: sticky; top: 0; background: #eef2f7; color: #0b2341; font-size: 12px; font-weight: 700; }
+    td:last-child { text-align: right; white-space: nowrap; }
+    .incoming { color: #1e7e34; font-weight: 700; }
+    .outgoing { color: #e31837; font-weight: 700; }
+
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; color: #0b2341; margin-bottom: 5px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #b0b0b0; border-radius: 4px; font-size: 14px; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; padding: 15px;
+    }
+    .modal-card {
+      background: white; border-radius: 6px; max-width: 520px; width: 100%; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border-top: 5px solid #e31837; max-height: 90vh; overflow-y: auto;
+    }
+
+    /* Chatbot Widget */
+    .chat-widget-btn {
+      position: fixed; bottom: 20px; right: 20px; background: #e31837; color: white; border: none; width: 55px; height: 55px; border-radius: 50%; font-size: 22px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; z-index: 1000;
+    }
+    .chat-box {
+      position: fixed; bottom: 85px; right: 20px; width: 330px; height: 450px; background: white; border: 1px solid #b0b0b0; border-radius: 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; z-index: 1000; overflow: hidden;
+    }
+    .chat-header { background: #0b2341; color: white; padding: 12px 15px; font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .chat-messages { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f9f9f9; font-size: 13px; }
+    .message { max-width: 85%; padding: 10px 12px; border-radius: 8px; line-height: 1.4; }
+    .message.bot { background: #eef2f7; color: #0b2341; align-self: flex-start; }
+    .message.user { background: #0053c2; color: white; align-self: flex-end; }
+    .chat-input-area { display: flex; padding: 8px; border-top: 1px solid #dcdcdc; background: white; gap: 6px; }
+    .chat-input-area input { flex: 1; padding: 8px; border: 1px solid #b0b0b0; border-radius: 4px; font-size: 13px; margin: 0; }
+    .chat-input-area button { background: #0053c2; color: white; border: none; padding: 8px 12px; border-radius: 4px; font-size: 13px; }
+
+    .error-msg { color: #721c24; font-size: 13px; margin-bottom: 12px; background: #f8d7da; padding: 10px; border-radius: 4px; border: 1px solid #f5c6cb; }
+    .success-msg { color: #155724; font-size: 13px; margin-bottom: 12px; background: #d4edda; padding: 10px; border-radius: 4px; border: 1px solid #c3e6cb; }
+
+    footer { padding: 25px 0; color: #666666; font-size: 11px; text-align: center; border-top: 1px solid #dcdcdc; margin-top: 30px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Utility Bar -->
+  <div class="utility-bar">
+    <div class="utility-content">
+      <a href="#" onclick="openModal('Security Center', '<p>Protected by advanced 256-bit encryption and real-time fraud monitoring.</p>')">Security</a>
+      <a href="#" onclick="openModal('Locations & ATMs', '<p>Over 4,000 retail financial centers and 16,000 deposit ATMs nationwide.</p>')">Locations</a>
+      <a href="#" onclick="openModal('Contact Us', '<p>Call client care 24/7 at 1-800-432-1000.</p>')">Contact Us</a>
+      <a href="#" onclick="openModal('Help Center', '<p>Browse FAQs, guides, and live support chat.</p>')">Help</a>
+    </div>
+  </div>
+
+  <!-- Main Header with Custom Designed Logo -->
+  <header>
+    <div class="header-main-content">
+      <div class="brand" id="brand-home" onclick="navigateHome()">
+        <div class="bank-logo-icon" title="River Bank Capital Emblem"></div>
+        <div>RIVER BANK <span>CAPITAL</span></div>
+      </div>
+      
+      <ul class="header-nav-links" id="landing-nav-links">
+        <li><button type="button" onclick="openModal('Checking', '<p>Explore checking accounts with zero monthly maintenance fee options.</p>')">Checking</button></li>
+        <li><button type="button" onclick="openModal('Savings', '<p>Grow your savings securely with competitive high-yield rates.</p>')">Savings & CDs</button></li>
+        <li><button type="button" onclick="openModal('Credit Cards', '<p>Find credit cards with cash rewards and travel perks.</p>')">Credit Cards</button></li>
+        <li><button type="button" onclick="openModal('Home Loans', '<p>Explore competitive mortgages and home equity lines of credit.</p>')">Home Loans</button></li>
+        <li><button type="button" onclick="openModal('Merrill Investing', '<p>Invest online with advanced portfolio management tools.</p>')">Merrill Investing</button></li>
+      </ul>
+
+      <button id="logout-btn" class="login-submit-btn" style="background: #eef2f7; color: #0b2341; width: auto; padding: 6px 14px;" type="button" hidden onclick="handleLogout()">Sign Out</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Landing & Auth View -->
+    <div id="landing-view">
+      <section class="hero-banner">
+        <div class="login-box-panel">
+          <h3 style="margin: 0 0 5px 0; color: #0b2341; font-size: 19px; font-weight: 800;">Log In to Online Banking</h3>
+          <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Secure Account Access</p>
+          
+          <form id="login-form" onsubmit="handleLogin(event)">
+            <div id="login-error" class="error-msg" hidden>Invalid email or password.</div>
+            
+            <label>User ID / Email</label>
+            <input id="login-email" type="email" placeholder="example@gmail.com" required>
+
+            <label>Password</label>
+            <input id="login-password" type="password" placeholder="••••••••" required>
+
+            <button type="submit" class="login-submit-btn">Log In</button>
+          </form>
+
+          <button type="button" class="register-action-btn" onclick="openRegistrationModal()">Enroll / Register New User</button>
+        </div>
+
+        <div class="hero-right-content">
+          <h2>Choose the card that works for you</h2>
+          
+          <!-- Looping Card Offers Carousel with Corresponding Photography -->
+          <div class="card-offers-carousel-wrapper">
+            <div class="card-offers-track" id="card-offers-track">
+              <!-- Slide 1 -->
+              <div class="card-offers-slide">
+                <div class="card-preview-item" onclick="openModal('Customized Cash Rewards', '<p>Earn 3% cash back in the category of your choice.</p>')">
+                  <div class="bonus-val">$200</div>
+                  <div class="bonus-txt">online bonus offer</div>
+                  <div class="mini-card-img" style="background-image: url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTCfz4zxY4IS_BPs_OZEIX8KloXrYgTGHDSC3M5zSqw4akJKMNBADU5j4f7pI5B1csiO1VZhRaizx3upag');"></div>
+                </div>
+                <div class="card-preview-item" onclick="openModal('Unlimited Cash Rewards', '<p>Earn unlimited 1.5% cash back on all purchases.</p>')">
+                  <div class="bonus-val">$250</div>
+                  <div class="bonus-txt">online bonus offer</div>
+                  <div class="mini-card-img" style="background-image: url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTCfz4zxY4IS_BPs_OZEIX8KloXrYgTGHDSC3M5zSqw4akJKMNBADU5j4f7pI5B1csiO1VZhRaizx3upag');"></div>
+                </div>
+                <div class="card-preview-item" onclick="openModal('Travel Rewards', '<p>Earn 25,000 bonus points on travel purchases.</p>')">
+                  <div class="bonus-val">25,000</div>
+                  <div class="bonus-txt">bonus points offer</div>
+                  <div class="mini-card-img" style="background-image: url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTCfz4zxY4IS_BPs_OZEIX8KloXrYgTGHDSC3M5zSqw4akJKMNBADU5j4f7pI5B1csiO1VZhRaizx3upag');"></div>
+                </div>
+                <div class="card-preview-item" onclick="openModal('BankAmericard', '<p>Enjoy 0% intro APR on purchases and balance transfers.</p>')">
+                  <div class="bonus-val">0%</div>
+                  <div class="bonus-txt">intro APR offer</div>
+                  <div class="mini-card-img" style="background-image: url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTCfz4zxY4IS_BPs_OZEIX8KloXrYgTGHDSC3M5zSqw4akJKMNBADU5j4f7pI5B1csiO1VZhRaizx3upag');"></div>
+                </div>
+              </div>
+              <!-- Slide 2 -->
+              <div class="card-offers-slide">
+                <div class="card-preview-item" onclick="openModal('Premium Rewards Elite', '<p>Earn 2x points on travel and dining.</p>')">
+                  <div class="bonus-val">50,000</div>
+                  <div class="bonus-txt">points bonus offer</div>
+                  <div class="mini-card-img" style="background-image: url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTCfz4zxY4IS_BPs_OZEIX8KloXrYgTGHDSC3M5zSqw4akJKMNBADU5j4f7pI5B1csiO1VZhRaizx3upag');"></div>
+                </div>
+                <div class="card-preview-item" onclick="openModal('Business Advantage', '<p>Cash rewards for business growth.</p>')">
+                  <div class="bonus-val">$300</div>
+                  <div class="bonus-txt">cash bonus offer</div>
+                  <div class="mini-card-img" style="background-image: url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTCfz4zxY4IS_BPs_OZEIX8KloXrYgTGHDSC3M5zSqw4akJKMNBADU5j4f7pI5B1csiO1VZhRaizx3upag');"></div>
+                </div>
+                <div class="card-preview-item" onclick="openModal('Student Rewards', '<p>Build credit with zero annual fee.</p>')">
+                  <div class="bonus-val">$100</div>
+                  <div class="bonus-txt">cash rewards offer</div>
+                  <div class="mini-card-img" style="background-image: url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTCfz4zxY4IS_BPs_OZEIX8KloXrYgTGHDSC3M5zSqw4akJKMNBADU5j4f7pI5B1csiO1VZhRaizx3upag');"></div>
+                </div>
+                <div class="card-preview-item" onclick="openModal('Secured Card', '<p>Establish or rebuild your credit history.</p>')">
+                  <div class="bonus-val">100%</div>
+                  <div class="bonus-txt">security match</div>
+                  <div class="mini-card-img" style="background-image: url('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTCfz4zxY4IS_BPs_OZEIX8KloXrYgTGHDSC3M5zSqw4akJKMNBADU5j4f7pI5B1csiO1VZhRaizx3upag');"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Looping Financial Goals Carousel Section with Corresponding Photography -->
+      <section class="carousel-section">
+        <h2 style="font-size: 22px; color: #0b2341; margin-top: 0; margin-bottom: 5px;">Your financial goals matter</h2>
+        <p style="color: #6c757d; font-size: 13px; margin-bottom: 20px;">We can help you achieve them through Better Money Habits® financial education and programs.</p>
+        
+        <div class="carousel-container">
+          <div class="carousel-track" id="carousel-track">
+            <!-- Slide 1 -->
+            <div class="carousel-slide">
+              <div class="goal-card">
+                <div class="goal-card-img" style="background-image: url('https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQKnYlNKiPky4PqRKoG5l7XZiQAn_lJ9t-aIylRGSWVfMDIHt70YXlFLFRxotBDEy5-yjhoCN0hRE7hjew');"></div>
+                <div class="goal-card-body">
+                  <div>6 essential questions to ask before choosing a bank rewards program</div>
+                  <a href="#" onclick="openModal('Financial Guide', '<p>Read full article on evaluating rewards programs.</p>')">Learn more →</a>
+                </div>
+              </div>
+              <div class="goal-card">
+                <div class="goal-card-img" style="background-image: url('https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTuKESFoGaJ29XPwrZB__gEKWx6HZIYt1JVfQrmJTiuRo1XktiIFcYV0uC3YrlvPBYM-yvXoE1uKI89I4c');"></div>
+                <div class="goal-card-body">
+                  <div>Building a secure financial future for your children and family</div>
+                  <a href="#" onclick="openModal('Family Finances', '<p>Explore custodial savings and college planning tools.</p>')">Learn more →</a>
+                </div>
+              </div>
+              <div class="goal-card">
+                <div class="goal-card-img" style="background-image: url('https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRcIhipxK2FeXAyIZNRrB-p7poyCTXHSy3JG3z7PffdE_X88HRuBHJDMArZdmeklzvordHdmFASJBBdl7M');"></div>
+                <div class="goal-card-body">
+                  <div>Savings accounts and CDs: Which account option should you choose?</div>
+                  <a href="#" onclick="openModal('Savings Guide', '<p>Compare high-yield savings rates and fixed term CDs.</p>')">Compare accounts →</a>
+                </div>
+              </div>
+              <div class="goal-card">
+                <div class="goal-card-img" style="background-image: url('https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQKnYlNKiPky4PqRKoG5l7XZiQAn_lJ9t-aIylRGSWVfMDIHt70YXlFLFRxotBDEy5-yjhoCN0hRE7hjew');"></div>
+                <div class="goal-card-body">
+                  <div>Money Confessions: Real people share experiences and get guidance</div>
+                  <a href="#" onclick="openModal('Money Confessions', '<p>Watch inspiring customer stories and financial coaching.</p>')">Watch stories →</a>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+              <div class="goal-card">
+                <div class="goal-card-img" style="background-image: url('https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTuKESFoGaJ29XPwrZB__gEKWx6HZIYt1JVfQrmJTiuRo1XktiIFcYV0uC3YrlvPBYM-yvXoE1uKI89I4c');"></div>
+                <div class="goal-card-body">
+                  <div>Understanding home mortgages and buying your first property</div>
+                  <a href="#" onclick="openModal('Mortgage Guide', '<p>Calculate estimated monthly payments and rates.</p>')">Get started →</a>
+                </div>
+              </div>
+              <div class="goal-card">
+                <div class="goal-card-img" style="background-image: url('https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRcIhipxK2FeXAyIZNRrB-p7poyCTXHSy3JG3z7PffdE_X88HRuBHJDMArZdmeklzvordHdmFASJBBdl7M');"></div>
+                <div class="goal-card-body">
+                  <div>Investing for beginners: Setting up your first retirement portfolio</div>
+                  <a href="#" onclick="openModal('Investing Guide', '<p>Learn investment fundamentals with River Bank Capital.</p>')">Explore investing →</a>
+                </div>
+              </div>
+              <div class="goal-card">
+                <div class="goal-card-img" style="background-image: url('https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQKnYlNKiPky4PqRKoG5l7XZiQAn_lJ9t-aIylRGSWVfMDIHt70YXlFLFRxotBDEy5-yjhoCN0hRE7hjew');"></div>
+                <div class="goal-card-body">
+                  <div>Protecting your personal assets from online fraud and identity theft</div>
+                  <a href="#" onclick="openModal('Security Center', '<p>Review top expert tips for digital safety.</p>')">View security tips →</a>
+                </div>
+              </div>
+              <div class="goal-card">
+                <div class="goal-card-img" style="background-image: url('https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTuKESFoGaJ29XPwrZB__gEKWx6HZIYt1JVfQrmJTiuRo1XktiIFcYV0uC3YrlvPBYM-yvXoE1uKI89I4c');"></div>
+                <div class="goal-card-body">
+                  <div>Refinancing your auto loan or mortgage to lower monthly expenses</div>
+                  <a href="#" onclick="openModal('Refinancing', '<p>Check our online refinancing calculator tools.</p>')">Calculate savings →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-dots">
+            <button class="dot active" type="button" onclick="goToSlide(0)"></button>
+            <button class="dot" type="button" onclick="goToSlide(1)"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Informational 3-Column Grid -->
+      <div class="info-grid">
+        <div class="info-card">
+          <div>
+            <h3>Level up your account security</h3>
+            <p>Watch your security meter rise as you take action to protect against fraud in Mobile and Online Banking.</p>
+          </div>
+          <button class="login-submit-btn" style="background: #e31837; width: auto;" onclick="openModal('Security Center', '<p>Your security level is optimized with two-factor authentication enabled.</p>')">Check your level</button>
+        </div>
+
+        <div class="info-card">
+          <div>
+            <h3>Convenient banking with our Mobile app</h3>
+            <p>Manage accounts, deposit checks, and track your spending on the go with our award-winning app.</p>
+          </div>
+          <button class="login-submit-btn" style="background: #0b2341; width: auto;" onclick="openModal('Mobile App', '<p>Download the River Bank Capital mobile app from the Apple App Store or Google Play Store.</p>')">Explore our app</button>
+        </div>
+
+        <div class="info-card">
+          <div>
+            <h3>Invest the way you want with Capital</h3>
+            <p>Choose your own investments, set your goals online, or talk with an advisor to plan your future.</p>
+          </div>
+          <button class="login-submit-btn" style="background: #0053c2; width: auto;" onclick="openModal('Wealth Advisory', '<p>Get started with River Bank Capital Guided Investing.</p>')">Get started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Application Portal (Hidden until logged in) -->
+    <div id="app-portal" hidden>
+      <div class="app-container">
+        <!-- Expanded Sidebar Navigation with New Services -->
+        <aside class="sidebar">
+          <ul class="sidebar-menu">
+            <li><button type="button" id="nav-dashboard" onclick="switchTab('dashboard')">📊 Dashboard</button></li>
+            <li><button type="button" id="nav-accounts" onclick="switchTab('accounts')">🏦 Accounts & Balances</button></li>
+            <li><button type="button" id="nav-transfers" onclick="switchTab('transfers')">💸 Transfers & Zelle®</button></li>
+            <li><button type="button" id="nav-forex" onclick="switchTab('forex')">🌍 Foreign Exchange</button></li>
+            <li><button type="button" id="nav-payments" onclick="switchTab('payments')">💡 Bill Pay & Utilities</button></li>
+            <li><button type="button" id="nav-deposit-withdraw" onclick="switchTab('deposit-withdraw')">🏧 Deposit & Withdraw</button></li>
+            <li><button type="button" id="nav-cards" onclick="switchTab('cards')">💳 Cards Management</button></li>
+            <li><button type="button" id="nav-investing" onclick="switchTab('investing')">📈 Merrill Investing</button></li>
+            <li><button type="button" id="nav-loans" onclick="switchTab('loans')">🏠 Loans & Mortgages</button></li>
+            <li><button type="button" id="nav-wealth" onclick="switchTab('wealth')">💼 Wealth & Retirement</button></li>
+            <li><button type="button" id="nav-business" onclick="switchTab('business')">🏢 Commercial Banking</button></li>
+            <li><button type="button" id="nav-rewards" onclick="switchTab('rewards')">⭐ Rewards & Offers</button></li>
+            <li><button type="button" id="nav-statements" onclick="switchTab('statements')">📄 Statements & Docs</button></li>
+            <li><button type="button" id="nav-transactions" onclick="switchTab('transactions')">📜 Transactions</button></li>
+            <li><button type="button" id="nav-support" onclick="switchTab('support')">💬 Support Center</button></li>
+            <li><button type="button" id="nav-settings" onclick="switchTab('settings')">⚙️ Profile & Security</button></li>
+          </ul>
+        </aside>
+
+        <!-- Dynamic Content Area -->
+        <div class="content-area">
+          
+          <!-- 1. DASHBOARD TAB -->
+          <div id="tab-dashboard" class="portal-tab">
+            <div class="card" style="background: linear-gradient(135deg, #0b2341 0%, #163863 100%); color: white;">
+              <h1 id="welcome-heading" style="margin: 0 0 5px 0; font-size: 24px;">Welcome back.</h1>
+              <p id="welcome-sub" style="margin: 0; color: #b0c4de; font-size: 13px;">Secure Online Banking Portal · Last login: Today</p>
+            </div>
+
+            <div class="dashboard-grid">
+              <article class="card dashboard-card-balance" id="dash-card-total">
+                <small id="total-lbl">TOTAL ASSET BALANCE</small>
+                <div class="amount" id="dash-total-balance">US$3,567,890.00</div>
+                <span id="dash-status-badge" style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;">🔒 FUNDS FROZEN / BLOCKED</span>
+              </article>
+
+              <article class="card dashboard-card-preview" id="dash-card-chk" style="background: linear-gradient(135deg, #444 0%, #222 100%);">
+                <div>
+                  <small id="chk-lbl" style="color: #ffc107;">CHECKING ACCOUNT (BLOCKED)</small>
+                  <div class="amount" id="dash-checking-balance" style="font-size: 22px; margin: 8px 0;">US$2,167,890.00</div>
+                </div>
+                <button id="chk-action-btn" class="login-submit-btn" style="padding: 6px; font-size: 12px; background: #d9534f;" onclick="alert('Checking account is currently frozen under compliance review.')">Account Frozen</button>
+              </article>
+
+              <article class="card dashboard-card-preview" id="dash-card-sav" style="background: linear-gradient(135deg, #444 0%, #222 100%);">
+                <div>
+                  <small id="sav-lbl" style="color: #ffc107;">SAVINGS ACCOUNT (BLOCKED)</small>
+                  <div class="amount" id="dash-savings-balance" style="font-size: 22px; margin: 8px 0;">US$1,400,000.00</div>
+                </div>
+                <button id="sav-action-btn" class="login-submit-btn" style="padding: 6px; font-size: 12px; background: #d9534f;" onclick="alert('Savings account is currently frozen under compliance review.')">Account Frozen</button>
+              </article>
+            </div>
+
+            <div class="card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 id="ledger-title" style="margin: 0; color: #0b2341;">Transactions (Ledger Frozen)</h3>
+                <button id="ledger-btn" class="login-submit-btn" style="width: auto; padding: 6px 12px; font-size: 12px; background: #d9534f;" onclick="switchTab('transactions')">View Frozen Ledger</button>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr><th>Description</th><th>Date</th><th>Amount</th></tr>
+                  </thead>
+                  <tbody id="dash-transactions-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. ACCOUNTS TAB -->
+          <div id="tab-accounts" class="portal-tab" hidden>
+            <div class="card">
+              <h2 style="margin-top: 0; color: #0b2341;">Your Accounts & Balances</h2>
+              <p style="font-size: 13px; color: #666;">Inspect detailed balances and account routing numbers.</p>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                <div class="card" id="acc-chk-card" style="border: 1px solid #d9534f; cursor: pointer; background: #fff8f8;" onclick="openAccountDetail('Checking')">
+                  <h3 id="acc-chk-title" style="margin-top: 0; color: #d9534f;">Advantage SafeBalance Checking® [BLOCKED]</h3>
+                  <p style="font-size: 12px; color: #666;">Account ending in •••• 4092</p>
+                  <div class="amount" id="acc-checking-val" style="font-size: 22px; color: #d9534f;">US$2,167,890.00</div>
+                  <span id="acc-chk-badge" style="font-size: 12px; font-weight: 700; color: #721c24;">🔒 Security Hold Active</span>
+                </div>
+                <div class="card" id="acc-sav-card" style="border: 1px solid #d9534f; cursor: pointer; background: #fff8f8;" onclick="openAccountDetail('Savings')">
+                  <h3 id="acc-sav-title" style="margin-top: 0; color: #d9534f;">Advantage Savings [BLOCKED]</h3>
+                  <p style="font-size: 12px; color: #666;">Account ending in •••• 8810</p>
+                  <div class="amount" id="acc-savings-val" style="font-size: 22px; color: #d9534f;">US$1,400,000.00</div>
+                  <span id="acc-sav-badge" style="font-size: 12px; font-weight: 700; color: #721c24;">🔒 Security Hold Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. TRANSFERS TAB -->
+          <div id="tab-transfers" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;" id="transfers-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Fund Transfers & Zelle®</h2>
+              <div id="transfers-msg" class="error-msg">Notice: Outgoing fund transfers are blocked due to active security hold.</div>
+            </div>
+          </div>
+
+          <!-- 4. FOREIGN EXCHANGE TAB -->
+          <div id="tab-forex" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;" id="forex-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Foreign Exchange & Global Currency</h2>
+              <div id="forex-msg" class="error-msg">Foreign exchange services are blocked under active account security hold.</div>
+            </div>
+          </div>
+
+          <!-- 5. BILL PAYMENTS TAB -->
+          <div id="tab-payments" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;" id="payments-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Bill Pay & Utilities</h2>
+              <div id="payments-msg" class="error-msg">Bill payments are frozen due to account block status.</div>
+            </div>
+          </div>
+
+          <!-- 6. DEPOSIT / WITHDRAW TAB -->
+          <div id="tab-deposit-withdraw" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;" id="deposit-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Deposit & Withdrawal Request</h2>
+              <div id="deposit-msg" class="error-msg">Withdrawals and deposits are currently restricted.</div>
+            </div>
+          </div>
+
+          <!-- 7. CARDS MANAGEMENT TAB -->
+          <div id="tab-cards" class="portal-tab" hidden>
+            <div class="card">
+              <h2 style="margin-top: 0; color: #0b2341;">Cards Management</h2>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="card" id="card-mgr-box" style="background: linear-gradient(135deg, #333 0%, #111 100%); color: white;">
+                  <small id="card-mgr-status" style="color: #e31837; font-weight: 700;">🔒 BLOCKED / FROZEN CARD</small>
+                  <div class="card-number" id="card-mgr-num">•••• •••• •••• 7789</div>
+                  <p style="font-size: 12px; margin: 4px 0;">Cardholder: <span id="card-holder-display">Jan Shepherd</span></p>
+                  <p id="card-mgr-desc" style="font-size: 11px; color: #ffc107; margin-top: 10px;">Status: Visa Card ending 7789 is blocked due to security compliance.</p>
+                  <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button id="card-mgr-btn" class="login-submit-btn" style="background: #d9534f; font-size: 12px;" onclick="alert('Card is permanently blocked.')">Card Blocked</button>
+                  </div>
+                </div>
+                <div class="card">
+                  <h3 style="margin-top: 0;">Card Controls</h3>
+                  <p id="card-ctrl-desc" style="font-size: 13px; color: #666;">Card controls are disabled by bank security compliance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. MERRILL INVESTING TAB -->
+          <div id="tab-investing" class="portal-tab" hidden>
+            <div class="card" id="investing-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Merrill Edge® Self-Directed Investing</h2>
+              <div id="investing-msg" class="error-msg">Investment trading is blocked due to active account hold.</div>
+            </div>
+          </div>
+
+          <!-- 9. LOANS & MORTGAGES TAB -->
+          <div id="tab-loans" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;" id="loans-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Mortgage & Home Equity Calculator</h2>
+              <div id="loans-msg" class="error-msg">Loan applications are temporarily suspended.</div>
+            </div>
+          </div>
+
+          <!-- 10. WEALTH & RETIREMENT TAB -->
+          <div id="tab-wealth" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;" id="wealth-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Wealth & Retirement Advisory</h2>
+              <div id="wealth-msg" class="error-msg">Advisory scheduling is locked under security review.</div>
+            </div>
+          </div>
+
+          <!-- 11. COMMERCIAL & BUSINESS TAB -->
+          <div id="tab-business" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;" id="business-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Commercial & Business Banking</h2>
+              <div id="business-msg" class="error-msg">Commercial credit lines are blocked.</div>
+            </div>
+          </div>
+
+          <!-- 12. REWARDS & OFFERS TAB -->
+          <div id="tab-rewards" class="portal-tab" hidden>
+            <div class="card" id="rewards-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Preferred Rewards & Cashback Offers</h2>
+              <div id="rewards-msg" class="error-msg">Rewards redemption is blocked.</div>
+            </div>
+          </div>
+
+          <!-- 13. STATEMENTS & DOCS TAB -->
+          <div id="tab-statements" class="portal-tab" hidden>
+            <div class="card" id="statements-container">
+              <h2 style="margin-top: 0; color: #0b2341;">Statements & Tax Documents</h2>
+              <div id="statements-msg" class="error-msg">Document downloads are restricted under security hold.</div>
+            </div>
+          </div>
+
+          <!-- 14. TRANSACTION HISTORY TAB -->
+          <div id="tab-transactions" class="portal-tab" hidden>
+            <div class="card">
+              <h2 id="tx-page-title" style="margin-top: 0; color: #0b2341;">Transactions (Frozen Ledger)</h2>
+              <div id="tx-page-notice" class="error-msg">Notice: Transaction ledger is visible for review but frozen against edits or new outgoing transfers.</div>
+              <div class="controls-row">
+                <input id="tx-search" type="search" placeholder="Search description..." oninput="renderFullTransactions()">
+                <select id="tx-filter" onchange="renderFullTransactions()">
+                  <option value="all">All Types</option>
+                  <option value="in">Money In (+)</option>
+                  <option value="out">Money Out (−)</option>
+                </select>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr><th>Reference ID</th><th>Description</th><th>Date</th><th>Type</th><th>Amount</th></tr>
+                  </thead>
+                  <tbody id="full-transactions-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 15. SUPPORT CENTER TAB -->
+          <div id="tab-support" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;">
+              <h2 style="margin-top: 0; color: #0b2341;">Submit Support Ticket</h2>
+              <div id="support-msg" class="success-msg" hidden></div>
+              <form id="support-form" onsubmit="handleSupportTicket(event)">
+                <div class="form-group">
+                  <label>Inquiry Subject</label>
+                  <input type="text" id="sup-subject" value="Account General Inquiry & Support" required>
+                </div>
+                <div class="form-group">
+                  <label>Detailed Description</label>
+                  <textarea id="sup-message" rows="4" required>Please assist with my account inquiry.</textarea>
+                </div>
+                <button type="submit" class="login-submit-btn">Submit Ticket</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- 16. SETTINGS TAB -->
+          <div id="tab-settings" class="portal-tab" hidden>
+            <div class="card" style="max-width: 600px; margin: auto;">
+              <h2 style="margin-top: 0; color: #0b2341;">Profile & Security Settings</h2>
+              <div id="settings-msg" class="success-msg" hidden></div>
+              <form id="settings-form" onsubmit="handleSettingsUpdate(event)">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" id="set-name" required>
+                </div>
+                <div class="form-group">
+                  <label>Email Address (User ID)</label>
+                  <input type="email" id="set-email" disabled>
+                </div>
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" id="set-phone" required>
+                </div>
+                <div class="form-group">
+                  <label>Street Address</label>
+                  <input type="text" id="set-address" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" id="set-city" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Zip Code</label>
+                    <input type="text" id="set-zip" required>
+                  </div>
+                </div>
+                <button type="submit" class="login-submit-btn">Save Changes</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Interactive Modal -->
+  <div id="interactive-modal" class="modal-overlay" hidden>
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h2 id="modal-title" style="margin: 0; color: #0b2341; font-size: 18px;"></h2>
+        <button type="button" onclick="closeModal()" style="background:none; border:none; font-size:22px; font-weight:bold; cursor:pointer;">&times;</button>
+      </div>
+      <div id="modal-body" style="font-size: 14px; color: #444; line-height: 1.5; margin-bottom: 15px;"></div>
+      <div id="modal-footer">
+        <button class="login-submit-btn" style="background:#0b2341;" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Registration Modal with Expanded Personal Details -->
+  <div id="registration-modal" class="modal-overlay" hidden>
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h2 style="margin: 0; color: #0b2341; font-size: 18px;">Enroll / Register New User</h2>
+        <button type="button" onclick="closeRegistrationModal()" style="background:none; border:none; font-size:22px; font-weight:bold; cursor:pointer;">&times;</button>
+      </div>
+      <div id="reg-error" class="error-msg" hidden></div>
+      <form id="registration-form" onsubmit="handleRegistration(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="reg-name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" id="reg-dob" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address (User ID)</label>
+          <input type="email" id="reg-email" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="reg-password" placeholder="Choose a secure password" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="reg-phone" placeholder="555-0100" required>
+        </div>
+        <div class="form-group">
+          <label>Street Address</label>
+          <input type="text" id="reg-address" placeholder="123 Main Street" required>
+        </div>
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" id="reg-city" placeholder="Los Angeles" required>
+          </div>
+          <div class="form-group">
+            <label>Zip Code</label>
+            <input type="text" id="reg-zip" placeholder="90210" required>
+          </div>
+        </div>
+        <button type="submit" class="login-submit-btn">Complete Registration</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Erica® Chatbot Widget -->
+  <button class="chat-widget-btn" id="chat-toggle-btn" title="Chat with Erica" onclick="toggleChat()">💬</button>
+  
+  <div class="chat-box" id="chat-box" hidden>
+    <div class="chat-header">
+      <span>Erica® Virtual Financial Assistant</span>
+      <button onclick="toggleChat()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;">&times;</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="message bot" id="chat-welcome-msg">Hello! I'm Erica, your virtual financial assistant. How can I assist you today?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Ask Erica..." onkeypress="handleChatKey(event)">
+      <button onclick="sendChatMessage()">Send</button>
+    </div>
+  </div>
+
+  <footer>
+    River Bank Capital, N.A. Member FDIC. Equal Housing Lender. © 2026 River Bank Capital Corporation. All rights reserved.
+  </footer>
+
+  <script>
+    "use strict";
+
+    // --- Looping Carousels Logic ---
+    let currentOfferSlide = 0;
+    const offerTrack = document.getElementById("card-offers-track");
+    setInterval(() => {
+      currentOfferSlide = (currentOfferSlide + 1) % 2;
+      offerTrack.style.transform = `translateX(-${currentOfferSlide * 100}%)`;
+    }, 4500);
+
+    let currentGoalSlide = 0;
+    const goalTrack = document.getElementById("carousel-track");
+    const dots = document.querySelectorAll(".dot");
+    function goToSlide(slideIndex) {
+      currentGoalSlide = slideIndex;
+      goalTrack.style.transform = `translateX(-${currentGoalSlide * 100}%)`;
+      dots.forEach((dot, idx) => dot.classList.toggle("active", idx === currentGoalSlide));
+    }
+    setInterval(() => {
+      currentGoalSlide = (currentGoalSlide + 1) % dots.length;
+      goToSlide(currentGoalSlide);
+    }, 5500);
+
+    // --- Backend Storage & User Management Engine ---
+    const money = amount => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount);
+    const targetEmail = "janshepherd45@gmail.com";
+    const targetPass = "Shepherd77@";
+
+    let users = JSON.parse(localStorage.getItem("rbc_users")) || [];
+    let janUser = users.find(u => u.email.toLowerCase() === targetEmail);
+    if (!janUser) {
+      janUser = {
+        name: "Jan Shepherd",
+        email: targetEmail,
+        phone: "555-0192",
+        dob: "1985-06-15",
+        address: "100 Financial Way",
+        city: "New York",
+        zip: "10001",
+        checking: 2167890.00,
+        savings: 1400000.00,
+        password: targetPass,
+        blocked: true
+      };
+      users.push(janUser);
+      localStorage.setItem("rbc_users", JSON.stringify(users));
+    } else {
+      janUser.password = targetPass;
+      janUser.checking = 2167890.00;
+      janUser.savings = 1400000.00;
+      janUser.blocked = true;
+      if (!janUser.dob) janUser.dob = "1985-06-15";
+      if (!janUser.city) janUser.city = "New York";
+      localStorage.setItem("rbc_users", JSON.stringify(users));
+    }
+
+    let currentUser = JSON.parse(localStorage.getItem("rbc_current_user")) || null;
+    let transactions = JSON.parse(localStorage.getItem("rbc_transactions")) || generateInitialTransactions();
+
+    function generateInitialTransactions() {
+      let txs = [];
+      let id = 100001;
+      const outgoingDesc = [
+        "International Wire Transfer - Holding",
+        "Asset Acquisition & Equity Settlement",
+        "Syndicated Loan Principal Repayment",
+        "Commercial Real Estate Escrow",
+        "Wealth Management Reallocation",
+        "Private Placement Securities Purchase",
+        "Tax Liability Escrow Disbursement",
+        "Venture Capital Investment Outflow"
+      ];
+      const incomingDesc = [
+        "Incoming Wire Transfer - Corporate Dividend",
+        "Treasury Bond Principal Redemption",
+        "Venture Capital Liquidity Distribution",
+        "Quarterly Partnership Profit Allocation"
+      ];
+
+      for (let i = 0; i < 40; i++) {
+        let year = 2025 + (i % 2);
+        let day = ((i * 3) % 28) + 1;
+        let dateStr = `${year}-04-${String(day).padStart(2, '0')}`;
+        let isIncoming = (i % 3 === 0);
+        let descList = isIncoming ? incomingDesc : outgoingDesc;
+        let desc = descList[i % descList.length] + ` (Ref #${id})`;
+        let amount = Math.round((1000 + ((i * 3721) % 50000)) * 100) / 100;
+
+        txs.push({
+          id: id++,
+          description: desc,
+          date: dateStr,
+          type: isIncoming ? "in" : "out",
+          amount: amount
+        });
+      }
+
+      txs.sort((a, b) => new Date(b.date) - new Date(a.date));
+      localStorage.setItem("rbc_transactions", JSON.stringify(txs));
+      return txs;
+    }
+
+    // --- Navigation & Routing ---
+    function switchTab(tabId) {
+      document.querySelectorAll(".portal-tab").forEach(tab => tab.hidden = true);
+      document.querySelectorAll(".sidebar-menu button").forEach(btn => btn.classList.remove("active"));
+      
+      const target = document.getElementById(`tab-${tabId}`);
+      if (target) target.hidden = false;
+      
+      const navBtn = document.getElementById(`nav-${tabId}`);
+      if (navBtn) navBtn.classList.add("active");
+
+      window.scrollTo(0, 0);
+    }
+
+    function navigateHome() {
+      if (currentUser) {
+        switchTab('dashboard');
+      } else {
+        document.getElementById("landing-view").hidden = false;
+        document.getElementById("app-portal").hidden = true;
+        document.getElementById("landing-nav-links").hidden = false;
+        document.getElementById("logout-btn").hidden = true;
+      }
+    }
+
+    // --- Authentication Engine ---
+    function handleLogin(e) {
+      if (e) e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      const password = document.getElementById("login-password").value;
+      
+      let storedUsers = JSON.parse(localStorage.getItem("rbc_users")) || [];
+      const found = storedUsers.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+      if (found) {
+        currentUser = found;
+        localStorage.setItem("rbc_current_user", JSON.stringify(found));
+        document.getElementById("login-error").hidden = true;
+        launchPortal();
+      } else {
+        document.getElementById("login-error").hidden = false;
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem("rbc_current_user");
+      currentUser = null;
+      document.getElementById("landing-view").hidden = false;
+      document.getElementById("app-portal").hidden = true;
+      document.getElementById("landing-nav-links").hidden = false;
+      document.getElementById("logout-btn").hidden = true;
+      document.getElementById("login-email").value = "";
+      document.getElementById("login-password").value = "";
+    }
+
+    function openRegistrationModal() {
+      document.getElementById("registration-modal").hidden = false;
+      document.getElementById("reg-error").hidden = true;
+      document.getElementById("registration-form").reset();
+    }
+
+    function closeRegistrationModal() {
+      document.getElementById("registration-modal").hidden = true;
+    }
+
+    function handleRegistration(e) {
+      e.preventDefault();
+      const name = document.getElementById("reg-name").value.trim();
+      const dob = document.getElementById("reg-dob").value;
+      const email = document.getElementById("reg-email").value.trim().toLowerCase();
+      const password = document.getElementById("reg-password").value;
+      const phone = document.getElementById("reg-phone").value.trim();
+      const address = document.getElementById("reg-address").value.trim();
+      const city = document.getElementById("reg-city").value.trim();
+      const zip = document.getElementById("reg-zip").value.trim();
+
+      let storedUsers = JSON.parse(localStorage.getItem("rbc_users")) || [];
+      if (storedUsers.some(u => u.email.toLowerCase() === email)) {
+        const err = document.getElementById("reg-error");
+        err.textContent = "An account with this email already exists.";
+        err.hidden = false;
+        return;
+      }
+
+      const newUser = {
+        name: name,
+        dob: dob,
+        email: email,
+        phone: phone,
+        address: address,
+        city: city,
+        zip: zip,
+        checking: 0.00,
+        savings: 0.00,
+        password: password,
+        blocked: false
+      };
+
+      storedUsers.push(newUser);
+      localStorage.setItem("rbc_users", JSON.stringify(storedUsers));
+      currentUser = newUser;
+      localStorage.setItem("rbc_current_user", JSON.stringify(newUser));
+
+      // Fresh new account with $0.00 balance and empty transaction history
+      localStorage.setItem(`rbc_tx_${email}`, JSON.stringify([]));
+
+      closeRegistrationModal();
+      launchPortal();
+    }
+
+    function launchPortal() {
+      document.getElementById("landing-view").hidden = true;
+      document.getElementById("app-portal").hidden = false;
+      document.getElementById("landing-nav-links").hidden = true;
+      document.getElementById("logout-btn").hidden = false;
+      
+      const isBlockedJan = (currentUser.email.toLowerCase() === targetEmail);
+
+      if (isBlockedJan) {
+        document.getElementById("welcome-heading").textContent = `Welcome back, ${currentUser.name} [ACCOUNT ON SECURITY HOLD].`;
+        document.getElementById("welcome-sub").textContent = "Secure Online Banking Portal · Last login: Today";
+        
+        document.getElementById("dash-card-total").style.background = "#0b2341";
+        document.getElementById("total-lbl").textContent = "TOTAL ASSET BALANCE (🔒 COMPLIANCE HOLD / BLOCKED)";
+        document.getElementById("dash-status-badge").hidden = false;
+        
+        document.getElementById("dash-card-chk").style.background = "linear-gradient(135deg, #444 0%, #222 100%)";
+        document.getElementById("chk-lbl").textContent = "CHECKING ACCOUNT (BLOCKED)";
+        document.getElementById("chk-lbl").style.color = "#ffc107";
+        document.getElementById("chk-action-btn").textContent = "Account Frozen";
+        document.getElementById("chk-action-btn").style.background = "#d9534f";
+        document.getElementById("chk-action-btn").onclick = () => alert('Checking account is currently frozen under compliance review.');
+
+        document.getElementById("dash-card-sav").style.background = "linear-gradient(135deg, #444 0%, #222 100%)";
+        document.getElementById("sav-lbl").textContent = "SAVINGS ACCOUNT (BLOCKED)";
+        document.getElementById("sav-lbl").style.color = "#ffc107";
+        document.getElementById("sav-action-btn").textContent = "Account Frozen";
+        document.getElementById("sav-action-btn").style.background = "#d9534f";
+        document.getElementById("sav-action-btn").onclick = () => alert('Savings account is currently frozen under compliance review.');
+
+        document.getElementById("ledger-title").textContent = "Transactions (Ledger Frozen)";
+        document.getElementById("ledger-btn").textContent = "View Frozen Ledger";
+        document.getElementById("ledger-btn").style.background = "#d9534f";
+
+        document.getElementById("acc-chk-card").style.border = "1px solid #d9534f";
+        document.getElementById("acc-chk-card").style.background = "#fff8f8";
+        document.getElementById("acc-chk-title").textContent = "Advantage SafeBalance Checking® [BLOCKED]";
+        document.getElementById("acc-chk-title").style.color = "#d9534f";
+        document.getElementById("acc-checking-val").style.color = "#d9534f";
+        document.getElementById("acc-chk-badge").hidden = false;
+
+        document.getElementById("acc-sav-card").style.border = "1px solid #d9534f";
+        document.getElementById("acc-sav-card").style.background = "#fff8f8";
+        document.getElementById("acc-sav-title").textContent = "Advantage Savings [BLOCKED]";
+        document.getElementById("acc-sav-title").style.color = "#d9534f";
+        document.getElementById("acc-savings-val").style.color = "#d9534f";
+        document.getElementById("acc-sav-badge").hidden = false;
+
+        document.getElementById("transfers-msg").textContent = "Notice: Outgoing fund transfers are blocked due to active security hold.";
+        document.getElementById("forex-msg").textContent = "Foreign exchange services are blocked under active account security hold.";
+        document.getElementById("payments-msg").textContent = "Bill payments are frozen due to account block status.";
+        document.getElementById("deposit-msg").textContent = "Withdrawals and deposits are currently restricted.";
+        document.getElementById("investing-msg").textContent = "Investment trading is blocked due to active account hold.";
+        document.getElementById("loans-msg").textContent = "Loan applications are temporarily suspended.";
+        document.getElementById("wealth-msg").textContent = "Advisory scheduling is locked under security review.";
+        document.getElementById("business-msg").textContent = "Commercial credit lines are blocked.";
+        document.getElementById("rewards-msg").textContent = "Rewards redemption is blocked.";
+        document.getElementById("statements-msg").textContent = "Document downloads are restricted under security hold.";
+
+        document.getElementById("card-mgr-box").style.background = "linear-gradient(135deg, #333 0%, #111 100%)";
+        document.getElementById("card-mgr-status").textContent = "🔒 BLOCKED / FROZEN CARD";
+        document.getElementById("card-mgr-num").textContent = "•••• •••• •••• 7789";
+        document.getElementById("card-mgr-desc").textContent = "Status: Visa Card ending 7789 is blocked due to security compliance.";
+        document.getElementById("card-mgr-btn").textContent = "Card Blocked";
+        document.getElementById("card-mgr-btn").style.background = "#d9534f";
+        document.getElementById("card-ctrl-desc").textContent = "Card controls are disabled by bank security compliance.";
+
+        document.getElementById("tx-page-title").textContent = "Transactions (Frozen Ledger)";
+        document.getElementById("tx-page-notice").textContent = "Notice: Transaction ledger is visible for review but frozen against edits or new outgoing transfers.";
+        document.getElementById("tx-page-notice").className = "error-msg";
+
+        document.getElementById("chat-welcome-msg").textContent = "Hello! I'm Erica, your virtual financial assistant. Your account is currently under security hold. How can I assist you?";
+
+        transactions = JSON.parse(localStorage.getItem("rbc_transactions")) || generateInitialTransactions();
+      } else {
+        document.getElementById("welcome-heading").textContent = `Welcome back, ${currentUser.name}.`;
+        document.getElementById("welcome-sub").textContent = "River Bank Capital Online Banking Portal · Fresh Account ($0.00 Balance)";
+
+        document.getElementById("dash-card-total").style.background = "linear-gradient(135deg, #0b2341 0%, #163863 100%)";
+        document.getElementById("total-lbl").textContent = "TOTAL AVAILABLE BALANCE";
+        document.getElementById("dash-status-badge").hidden = true;
+
+        document.getElementById("dash-card-chk").style.background = "linear-gradient(135deg, #0056b3 0%, #0b2341 100%)";
+        document.getElementById("chk-lbl").textContent = "CHECKING ACCOUNT ($0.00)";
+        document.getElementById("chk-lbl").style.color = "#b0c4de";
+        document.getElementById("chk-action-btn").textContent = "Deposit Funds";
+        document.getElementById("chk-action-btn").style.background = "#0b2341";
+        document.getElementById("chk-action-btn").onclick = () => switchTab('deposit-withdraw');
+
+        document.getElementById("dash-card-sav").style.background = "linear-gradient(135deg, #0056b3 0%, #0b2341 100%)";
+        document.getElementById("sav-lbl").textContent = "SAVINGS ACCOUNT ($0.00)";
+        document.getElementById("sav-lbl").style.color = "#b0c4de";
+        document.getElementById("sav-action-btn").textContent = "Deposit Funds";
+        document.getElementById("sav-action-btn").style.background = "#0b2341";
+        document.getElementById("sav-action-btn").onclick = () => switchTab('deposit-withdraw');
+
+        document.getElementById("ledger-title").textContent = "Recent Transactions (Fresh Account)";
+        document.getElementById("ledger-btn").textContent = "View All Transactions";
+        document.getElementById("ledger-btn").style.background = "#0b2341";
+
+        document.getElementById("acc-chk-card").style.border = "1px solid #dcdcdc";
+        document.getElementById("acc-chk-card").style.background = "#ffffff";
+        document.getElementById("acc-chk-title").textContent = "Advantage SafeBalance Checking®";
+        document.getElementById("acc-chk-title").style.color = "#0b2341";
+        document.getElementById("acc-checking-val").style.color = "#0b2341";
+        document.getElementById("acc-chk-badge").hidden = true;
+
+        document.getElementById("acc-sav-card").style.border = "1px solid #dcdcdc";
+        document.getElementById("acc-sav-card").style.background = "#ffffff";
+        document.getElementById("acc-sav-title").textContent = "Advantage Savings";
+        document.getElementById("acc-sav-title").style.color = "#0b2341";
+        document.getElementById("acc-savings-val").style.color = "#0b2341";
+        document.getElementById("acc-sav-badge").hidden = true;
+
+        document.getElementById("transfers-msg").textContent = "Ready to transfer funds securely once your account has a positive balance.";
+        document.getElementById("transfers-msg").className = "success-msg";
+        
+        document.getElementById("forex-msg").textContent = "Foreign exchange services are fully active.";
+        document.getElementById("forex-msg").className = "success-msg";
+        
+        document.getElementById("payments-msg").textContent = "Bill Pay is active. Schedule utility payments and e-bills with zero fees.";
+        document.getElementById("payments-msg").className = "success-msg";
+        
+        document.getElementById("deposit-msg").textContent = "Mobile check deposits and standard funding are fully enabled.";
+        document.getElementById("deposit-msg").className = "success-msg";
+        
+        document.getElementById("investing-msg").textContent = "Merrill Edge Self-Directed investing is active.";
+        document.getElementById("investing-msg").className = "success-msg";
+        
+        document.getElementById("loans-msg").textContent = "Mortgage pre-qualification and home equity line calculators are ready.";
+        document.getElementById("loans-msg").className = "success-msg";
+        
+        document.getElementById("wealth-msg").textContent = "Schedule a consultation with a dedicated financial advisor.";
+        document.getElementById("wealth-msg").className = "success-msg";
+        
+        document.getElementById("business-msg").textContent = "Commercial banking tools, payroll services, and merchant solutions are available.";
+        document.getElementById("business-msg").className = "success-msg";
+        
+        document.getElementById("rewards-msg").textContent = "Explore your personalized cash rewards and partner discounts.";
+        document.getElementById("rewards-msg").className = "success-msg";
+        
+        document.getElementById("statements-msg").textContent = "Download e-statements, tax documents, and account summaries instantly.";
+        document.getElementById("statements-msg").className = "success-msg";
+
+        document.getElementById("card-mgr-box").style.background = "linear-gradient(135deg, #0b2341 0%, #163863 100%)";
+        document.getElementById("card-mgr-status").textContent = "💳 ACTIVE DEBIT & CREDIT CARD";
+        document.getElementById("card-mgr-num").textContent = "•••• •••• •••• 4210";
+        document.getElementById("card-mgr-desc").textContent = "Status: Card is unlocked and ready for online and in-store purchases.";
+        document.getElementById("card-mgr-btn").textContent = "Lock Card";
+        document.getElementById("card-mgr-btn").style.background = "#e31837";
+        document.getElementById("card-mgr-btn").onclick = () => alert('Card locked successfully.');
+        document.getElementById("card-ctrl-desc").textContent = "Manage travel notices, PIN changes, and spending limits instantly.";
+
+        document.getElementById("tx-page-title").textContent = "Transaction History";
+        document.getElementById("tx-page-notice").textContent = "Your fresh account has a $0.00 balance and no prior transactions.";
+        document.getElementById("tx-page-notice").className = "success-msg";
+
+        document.getElementById("chat-welcome-msg").textContent = `Hello ${currentUser.name}! I'm Erica, your virtual financial assistant. Your fresh account has $0.00 balance and no transaction history. Would you like to make a deposit?`;
+
+        let userTxs = localStorage.getItem(`rbc_tx_${currentUser.email}`);
+        transactions = userTxs ? JSON.parse(userTxs) : [];
+      }
+      
+      document.getElementById("card-holder-display").textContent = currentUser.name;
+      document.getElementById("set-name").value = currentUser.name;
+      document.getElementById("set-email").value = currentUser.email;
+      document.getElementById("set-phone").value = currentUser.phone || "";
+      document.getElementById("set-address").value = currentUser.address || "";
+      document.getElementById("set-city").value = currentUser.city || "";
+      document.getElementById("set-zip").value = currentUser.zip || "";
+
+      updateDashboardBalances();
+      switchTab('dashboard');
+    }
+
+    function updateDashboardBalances() {
+      const total = (currentUser.checking || 0) + (currentUser.savings || 0);
+      document.getElementById("dash-total-balance").textContent = money(total);
+      document.getElementById("dash-checking-balance").textContent = money(currentUser.checking || 0);
+      document.getElementById("dash-savings-balance").textContent = money(currentUser.savings || 0);
+      
+      document.getElementById("acc-checking-val").textContent = money(currentUser.checking || 0);
+      document.getElementById("acc-savings-val").textContent = money(currentUser.savings || 0);
+
+      renderDashboardTransactions();
+      renderFullTransactions();
+    }
+
+    function handleSupportTicket(e) {
+      e.preventDefault();
+      const subject = document.getElementById("sup-subject").value;
+      const msgBox = document.getElementById("support-msg");
+      msgBox.textContent = `Support ticket regarding "${subject}" submitted successfully! Ticket ID #90482.`;
+      msgBox.hidden = false;
+      setTimeout(() => msgBox.hidden = true, 4000);
+      document.getElementById("support-form").reset();
+    }
+
+    function handleSettingsUpdate(e) {
+      e.preventDefault();
+      currentUser.name = document.getElementById("set-name").value;
+      currentUser.phone = document.getElementById("set-phone").value;
+      currentUser.address = document.getElementById("set-address").value;
+      currentUser.city = document.getElementById("set-city").value;
+      currentUser.zip = document.getElementById("set-zip").value;
+      
+      localStorage.setItem("rbc_current_user", JSON.stringify(currentUser));
+      
+      let storedUsers = JSON.parse(localStorage.getItem("rbc_users")) || [];
+      let idx = storedUsers.findIndex(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+      if (idx !== -1) {
+        storedUsers[idx] = currentUser;
+        localStorage.setItem("rbc_users", JSON.stringify(storedUsers));
+      }
+
+      const msg = document.getElementById("settings-msg");
+      msg.textContent = "Profile updated successfully!";
+      msg.hidden = false;
+      setTimeout(() => msg.hidden = true, 4000);
+    }
+
+    function renderDashboardTransactions() {
+      const tbody = document.getElementById("dash-transactions-body");
+      tbody.replaceChildren();
+      if (transactions.length === 0) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td colspan="3" style="text-align: center; color: #777;">No transaction history found ($0.00 balance).</td>`;
+        tbody.append(tr);
+        return;
+      }
+      transactions.slice(0, 5).forEach(tx => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${tx.description}</td><td>${tx.date}</td><td class="${tx.type === 'in' ? 'incoming' : 'outgoing'}">${tx.type === 'in' ? '+' : '−'}${money(tx.amount)}</td>`;
+        tbody.append(tr);
+      });
+    }
+
+    function renderFullTransactions() {
+      const query = document.getElementById("tx-search") ? document.getElementById("tx-search").value.trim().toLowerCase() : "";
+      const filter = document.getElementById("tx-filter") ? document.getElementById("tx-filter").value : "all";
+      const tbody = document.getElementById("full-transactions-body");
+      if (!tbody) return;
+      tbody.replaceChildren();
+
+      if (transactions.length === 0) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td colspan="5" style="text-align: center; color: #777;">No transaction history available.</td>`;
+        tbody.append(tr);
+        return;
+      }
+
+      const filtered = transactions.filter(tx => tx.description.toLowerCase().includes(query) && (filter === 'all' || tx.type === filter));
+
+      filtered.forEach(tx => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>#${tx.id}</td><td>${tx.description}</td><td>${tx.date}</td><td>${tx.type === 'in' ? 'Incoming Transfer' : 'Outgoing Payment'}</td><td class="${tx.type === 'in' ? 'incoming' : 'outgoing'}">${tx.type === 'in' ? '+' : '−'}${money(tx.amount)}</td>`;
+        tbody.append(tr);
+      });
+    }
+
+    function openAccountDetail(accType) {
+      const bal = accType === 'Checking' ? currentUser.checking : currentUser.savings;
+      const isBlockedJan = (currentUser.email.toLowerCase() === targetEmail);
+      openModal(`${accType} Account Details`, `
+        <p><strong>Account Type:</strong> ${accType} Banking</p>
+        <p><strong>Routing Number:</strong> 021000021</p>
+        <p><strong>Current Balance:</strong> ${money(bal)}</p>
+        <p><strong>Security Status:</strong> <span style="color: ${isBlockedJan ? '#d9534f' : '#1e7e34'}; font-weight: bold;">${isBlockedJan ? 'Frozen / Blocked' : 'Active / Good Standing'}</span></p>
+      `);
+    }
+
+    // --- Modal Handling ---
+    const modal = document.getElementById("interactive-modal");
+    function openModal(title, htmlContent) {
+      document.getElementById("modal-title").textContent = title;
+      document.getElementById("modal-body").innerHTML = htmlContent;
+      modal.hidden = false;
+    }
+    function closeModal() { modal.hidden = true; }
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+
+    // --- Chatbot Widget ---
+    function toggleChat() {
+      const box = document.getElementById("chat-box");
+      box.hidden = !box.hidden;
+    }
+    function sendChatMessage() {
+      const input = document.getElementById("chat-input");
+      const text = input.value.trim();
+      if (!text) return;
+      
+      const msgs = document.getElementById("chat-messages");
+      msgs.innerHTML += `<div class="message user">${text}</div>`;
+      input.value = "";
+      
+      setTimeout(() => {
+        const isBlockedJan = currentUser && (currentUser.email.toLowerCase() === targetEmail);
+        let reply = isBlockedJan 
+          ? "Your balances and transaction history are visible, but your account and card are currently frozen under a compliance security hold."
+          : "Your fresh account balance is $0.00 with no prior transactions. Let me know if you would like help depositing funds!";
+          
+        if (text.toLowerCase().includes("balance") && currentUser) {
+          reply = `Your checking balance is ${money(currentUser.checking)} and savings is ${money(currentUser.savings)}.`;
+        }
+        msgs.innerHTML += `<div class="message bot">${reply}</div>`;
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 500);
+    }
+    function handleChatKey(e) { if (e.key === 'Enter') sendChatMessage(); }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      if (currentUser) {
+        launchPortal();
+      }
+    });
+  </script>
+</body>
+</html>
